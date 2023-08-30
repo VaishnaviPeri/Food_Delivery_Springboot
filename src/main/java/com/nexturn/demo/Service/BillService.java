@@ -1,0 +1,22 @@
+package com.nexturn.demo.Service;
+
+import com.nexturn.demo.ExceptionHandling.BillException;
+import com.nexturn.demo.ExceptionHandling.CustomerException;
+import com.nexturn.demo.ExceptionHandling.MenuException;
+import com.nexturn.demo.Model.Bill;
+
+public interface BillService {
+	
+	public Bill addBill(Bill bill) throws BillException;
+	
+	public Bill removeBill(Integer bill) throws BillException;
+	
+	public Bill updateBill(Bill bill) throws BillException;
+	
+	public Bill viewBill(Integer bill_id) throws BillException;
+	
+	public String totalBillById(Integer customer_id) throws BillException, MenuException, CustomerException;
+	
+	
+
+}

@@ -1,0 +1,70 @@
+package com.nexturn.demo.Service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nexturn.demo.ExceptionHandling.CustomerException;
+import com.nexturn.demo.Model.Customer;
+import com.nexturn.demo.Repository.CustomerRepository;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+	
+	@Autowired
+	CustomerRepository customerRepo;
+
+	public Customer addCustomer(Customer customer) throws CustomerException {
+		Optional<Customer> cust= customerRepo.findById(customer.getCustomer_id());
+		if(!cust.isPresent()) {
+			throw new CustomerException("Customer not found");	
+		}else {
+			return customerRepo.save(customer);
+		}
+	}
+
+	
+	public Customer removeCustomer(Integer customer_id) throws CustomerException {
+		Optional<Customer> cust= customerRepo.findById(customer_id);
+		if(cust.isPresent()) {
+			Customer cust_1= cust.get();
+			customerRepo.delete(cust_1);
+			return cust_1;
+			
+		}else {
+			throw new CustomerException("customer not dounf with ID "+ customer_id);
+		}
+
+	}
+
+
+	public Customer updatecustomer(Customer customer) throws CustomerException {
+		Optional<Customer> opt = customerRepo.findById(customer.getCustomer_id());
+		if(opt.isPresent()) {
+			return customerRepo.save(customer);
+		}else {
+			throw new CustomerException("No such customer exists..");
+		}
+	
+	}
+
+
+	public Customer viewCustomer(Integer customer_id) throws CustomerException {
+		Optional<Customer> opt = customerRepo.findById(customer_id);
+		if(opt.isPresent()) {
+			Customer customer = opt.get();
+			return customer;
+		}else {
+			throw new CustomerException("No Customer found with ID: "+customer_id);
+		}
+	}
+
+
+	@Override
+	public Customer viewCustomer(Customer customer) throws CustomerException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
