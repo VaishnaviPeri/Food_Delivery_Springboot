@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.nexturn.demo.ExceptionHandling.BillException;
 import com.nexturn.demo.ExceptionHandling.CustomerException;
@@ -14,6 +15,7 @@ import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Repository.BillRepository;
 import com.nexturn.demo.Repository.CustomerRepository;
 
+@Service
 public class BillServiceImpl implements BillService {
 	
 	@Autowired

@@ -34,11 +34,12 @@ public class Restaurants {
 	private String restaurant_name;
 	private String manager_name;
 	private String restaurant_contact;
+	private String restaurant_address;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
-	private Address address;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JsonIgnore
+//	private Address address;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Menu> menuList = new ArrayList<>();
@@ -49,13 +50,13 @@ public class Restaurants {
 	}
 
 	public Restaurants(int restaurant_id, String restaurant_name, String manager_name, String restaurant_contact,
-			Address address, List<Menu> menuList) {
+			String restaurant_address, List<Menu> menuList) {
 		super();
 		this.restaurant_id = restaurant_id;
 		this.restaurant_name = restaurant_name;
 		this.manager_name = manager_name;
 		this.restaurant_contact = restaurant_contact;
-		this.address = address;
+		this.restaurant_address = restaurant_address;
 		this.menuList = menuList;
 	}
 
@@ -91,12 +92,12 @@ public class Restaurants {
 		this.restaurant_contact = restaurant_contact;
 	}
 
-	public Address getAddress() {
-		return address;
+	public String getRestaurant_address() {
+		return restaurant_address;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setRestaurant_address(String restaurant_address) {
+		this.restaurant_address = restaurant_address;
 	}
 
 	public List<Menu> getMenuList() {
@@ -110,10 +111,10 @@ public class Restaurants {
 	@Override
 	public String toString() {
 		return "Restaurants [restaurant_id=" + restaurant_id + ", restaurant_name=" + restaurant_name
-				+ ", manager_name=" + manager_name + ", restaurant_contact=" + restaurant_contact + ", address="
-				+ address + ", menuList=" + menuList + "]";
+				+ ", manager_name=" + manager_name + ", restaurant_contact=" + restaurant_contact
+				+ ", restaurant_address=" + restaurant_address + ", menuList=" + menuList + "]";
 	}
-	
+
 	
 	
 
