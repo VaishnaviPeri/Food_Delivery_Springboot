@@ -3,6 +3,8 @@ package com.nexturn.demo.Service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.nexturn.demo.ExceptionHandling.CustomerException;
@@ -61,10 +63,28 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 
-	@Override
+
 	public Customer viewCustomer(Customer customer) throws CustomerException {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+ 
+	 public Customer validateCustomer(String customer_name, String customer_password) throws CustomerException{
+		 Optional<Customer> customerOptional = customerRepo.findByCustomer_name(customer_name);
+		 if(customerOptional.isPresent()) {
+			 Customer customer = customerOptional.get();
+			 if(customer.getCustomer_password().equals(customer_password)) {
+				 return customer;
+			 }else {
+				 throw new CustomerException("Invalid Password");
+			 }
+		 }else {
+			 throw new CustomerException("User Not Found");
+		 }
+	 }
+	
+	
+
 
 }

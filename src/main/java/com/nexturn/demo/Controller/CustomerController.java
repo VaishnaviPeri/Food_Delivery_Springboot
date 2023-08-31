@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nexturn.demo.ExceptionHandling.CustomerException;
 import com.nexturn.demo.Model.Customer;
+import com.nexturn.demo.Security.JWTConfig;
 import com.nexturn.demo.Service.CustomerService;
 
 @RestController
@@ -22,6 +23,9 @@ public class CustomerController {
 	
 	@Autowired
 	CustomerService cservice;
+	
+	@Autowired
+	JWTConfig jwtConfig;
 	
 	@PostMapping("/add")
 	public ResponseEntity<Customer> addcustomer(@RequestBody Customer customer) throws CustomerException{
@@ -48,4 +52,17 @@ public class CustomerController {
 		Customer cust= cservice.removeCustomer(customer_id);
 		return new ResponseEntity<Customer>(cust, HttpStatus.OK);
 	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<String> customerLogin(@RequestBody Customer loginCredentials){
+		try {
+			Customer customer= cservice.validateCustomer(loginCredentials.getCustomer_name(),loginCredentials.getCustomer_password());
+		    String token= jwtConfig.generateToken(customer.getCustomer_name());
+		    return new ResponseEntity<>(token, HttpStatus.OK);
+		}catch(CustomerException ce){
+			return new ResponseEntity<>(ce.getMessage(),HttpStatus.UNAUTHORIZED);
+			
+		}
+	}
+	
 }

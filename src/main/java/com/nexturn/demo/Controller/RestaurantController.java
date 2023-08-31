@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nexturn.demo.ExceptionHandling.CustomerException;
 import com.nexturn.demo.ExceptionHandling.RestaurantException;
+import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Model.Restaurants;
+import com.nexturn.demo.Security.JWTConfig;
 import com.nexturn.demo.Service.RestaurantService;
 
 @RestController
@@ -23,6 +26,9 @@ public class RestaurantController {
 	
 	@Autowired
 	RestaurantService rservice;
+	
+	@Autowired
+	JWTConfig jwtConfig;
 	
 	@PostMapping("/add")
      public ResponseEntity<Restaurants> saveResturant( @RequestBody Restaurants restaurant) throws RestaurantException {		
@@ -49,6 +55,18 @@ public class RestaurantController {
 	public ResponseEntity<Restaurants> deleteRestaurant(@PathVariable("restaurantId") Integer restaurantId) throws RestaurantException{
 		Restaurants removedRestaurant = rservice.removeRestauarant(restaurantId);
 		return new ResponseEntity<Restaurants>(removedRestaurant, HttpStatus.OK);
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<String> managerLogin(@RequestBody Restaurants loginCredentials){
+		try {
+			Restaurants restaurant= rservice.validateRestaurant(loginCredentials.getManager_name(),loginCredentials.getManager_password());
+		    String token= jwtConfig.generateToken(restaurant.getManager_name());
+		    return new ResponseEntity<>(token, HttpStatus.OK);
+		}catch(RestaurantException ce){
+			return new ResponseEntity<>(ce.getMessage(),HttpStatus.UNAUTHORIZED);
+			
+		}
 	}
 	
 }

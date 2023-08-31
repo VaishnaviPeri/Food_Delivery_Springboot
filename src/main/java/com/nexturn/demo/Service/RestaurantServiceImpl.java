@@ -5,7 +5,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nexturn.demo.ExceptionHandling.CustomerException;
 import com.nexturn.demo.ExceptionHandling.RestaurantException;
+import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Model.Restaurants;
 import com.nexturn.demo.Repository.RestaurantRepository;
 
@@ -57,5 +59,20 @@ public class RestaurantServiceImpl implements RestaurantService{
 			throw new RestaurantException("No Restaurant found with ID: "+restaurant_id);
 		}
 	}
+	
+	
+	 public Restaurants validateRestaurant(String manager_name, String manager_password) throws RestaurantException{
+		 Optional<Restaurants> restOptional = rRepo.findByManager_name(manager_name);
+		 if(restOptional.isPresent()) {
+			 Restaurants restaurant = restOptional.get();
+			 if(restaurant.getManager_password().equals(manager_password)) {
+				 return restaurant;
+			 }else {
+				 throw new RestaurantException("Invalid Password");
+			 }
+		 }else {
+			 throw new RestaurantException("Manager Not Found");
+		 }
+	 }
 
 }

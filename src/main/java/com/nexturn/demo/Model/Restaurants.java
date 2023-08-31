@@ -33,6 +33,7 @@ public class Restaurants {
 	private int restaurant_id;
 	private String restaurant_name;
 	private String manager_name;
+	private String manager_password;
 	private String restaurant_contact;
 	private String restaurant_address;
 	
@@ -49,12 +50,13 @@ public class Restaurants {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Restaurants(int restaurant_id, String restaurant_name, String manager_name, String restaurant_contact,
+	public Restaurants(int restaurant_id, String restaurant_name, String manager_name, String manager_password, String restaurant_contact,
 			String restaurant_address, List<Menu> menuList) {
 		super();
 		this.restaurant_id = restaurant_id;
 		this.restaurant_name = restaurant_name;
 		this.manager_name = manager_name;
+		this.manager_password= manager_password;
 		this.restaurant_contact = restaurant_contact;
 		this.restaurant_address = restaurant_address;
 		this.menuList = menuList;
@@ -83,6 +85,14 @@ public class Restaurants {
 	public void setManager_name(String manager_name) {
 		this.manager_name = manager_name;
 	}
+	
+	public String getManager_password() {
+		return manager_password;
+	}
+
+	public void setManager_password(String manager_password) {
+		this.manager_password = manager_password;
+	}
 
 	public String getRestaurant_contact() {
 		return restaurant_contact;
@@ -108,12 +118,6 @@ public class Restaurants {
 		this.menuList = menuList;
 	}
 
-	@Override
-	public String toString() {
-		return "Restaurants [restaurant_id=" + restaurant_id + ", restaurant_name=" + restaurant_name
-				+ ", manager_name=" + manager_name + ", restaurant_contact=" + restaurant_contact
-				+ ", restaurant_address=" + restaurant_address + ", menuList=" + menuList + "]";
-	}
 
 	
 	
