@@ -1,0 +1,27 @@
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+  text-align: center;
+}
+
+.logo img {
+  width: 300px; /* Adjust the width of the logo as needed */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.about-box {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px; /* Add border radius for a rounded appearance */
+}
