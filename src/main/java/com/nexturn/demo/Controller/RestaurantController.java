@@ -1,6 +1,7 @@
 package com.nexturn.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,8 +28,8 @@ public class RestaurantController {
 	@Autowired
 	RestaurantService rservice;
 	
-	@Autowired
-	JWTConfig jwtConfig;
+//	@Autowired
+//	JWTConfig jwtConfig;
 	
 	@PostMapping("/add")
      public ResponseEntity<Restaurants> saveResturant( @RequestBody Restaurants restaurant) throws RestaurantException {		
@@ -50,6 +51,16 @@ public class RestaurantController {
     	
 	}
 	
+	@GetMapping("/view/{restaurant_name}")
+	public ResponseEntity<Restaurants> getByRestaurantName(@PathVariable String restaurant_name) throws RestaurantException{
+		try {
+		Restaurants restaurant = rservice.viewRestaurantByName(restaurant_name);
+		return new ResponseEntity<>(restaurant, HttpStatus.FOUND);
+	}catch(Exception ex) {
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+}
+	
 	
 	@DeleteMapping("/remove/{restaurantId}")
 	public ResponseEntity<Restaurants> deleteRestaurant(@PathVariable("restaurantId") Integer restaurantId) throws RestaurantException{
@@ -57,16 +68,28 @@ public class RestaurantController {
 		return new ResponseEntity<Restaurants>(removedRestaurant, HttpStatus.OK);
 	}
 	
-	@PostMapping("/login")
-	public ResponseEntity<String> managerLogin(@RequestBody Restaurants loginCredentials){
+	@PostMapping("/register")
+	public ResponseEntity<String> restaurantRegistration(@RequestBody Restaurants restaurant) throws RestaurantException{
 		try {
-			Restaurants restaurant= rservice.validateRestaurant(loginCredentials.getManager_name(),loginCredentials.getManager_password());
-		    String token= jwtConfig.generateToken(restaurant.getManager_name());
-		    return new ResponseEntity<>(token, HttpStatus.OK);
-		}catch(RestaurantException ce){
-			return new ResponseEntity<>(ce.getMessage(),HttpStatus.UNAUTHORIZED);
-			
+			rservice.addRestaurant(restaurant);
+			return new ResponseEntity<>("Registration Successfull...!",HttpStatus.CREATED);
+		}catch(RestaurantException re) {
+			return new ResponseEntity<>("Registration failed..!",HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+//	@PostMapping("/login")
+//	public ResponseEntity<String> managerLogin(@RequestBody Restaurants loginCredentials){
+//		try {
+//			Restaurants restaurant= rservice.validateRestaurant(loginCredentials.getManager_name(),loginCredentials.getManager_password());
+//		    String token= jwtConfig.generateToken(restaurant.getManager_name());
+//		    return new ResponseEntity<>(token, HttpStatus.OK);
+//		}catch(RestaurantException ce){
+//			return new ResponseEntity<>(ce.getMessage(),HttpStatus.UNAUTHORIZED);
+//			
+//		}
+//	}
+	
+	
 	
 }

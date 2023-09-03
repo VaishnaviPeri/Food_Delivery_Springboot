@@ -15,9 +15,9 @@ public interface CustomerService {
 	
 	Customer viewCustomer(Integer customer_id) throws CustomerException;
 	
-	public Customer viewCustomer(Customer customer) throws CustomerException;
+//	public Customer viewCustomer(Customer customer) throws CustomerException;
 
-	public Customer validateCustomer(String customer_name, String customer_password) throws CustomerException;
+//	public Customer validateCustomer(String customer_name, String customer_password) throws CustomerException;
 
 	
 

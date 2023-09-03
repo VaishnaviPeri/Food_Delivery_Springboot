@@ -1,12 +1,13 @@
 package com.nexturn.demo.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.nexturn.demo.ExceptionHandling.CustomerException;
 import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Repository.CustomerRepository;
@@ -16,6 +17,8 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	CustomerRepository customerRepo;
+
+	
 
 	public Customer addCustomer(Customer customer) throws CustomerException {
 		Optional<Customer> cust= customerRepo.findById(customer.getCustomer_id());
@@ -64,27 +67,39 @@ public class CustomerServiceImpl implements CustomerService {
 
 
 
-	public Customer viewCustomer(Customer customer) throws CustomerException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	public Customer viewCustomer(Customer customer) throws CustomerException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
+
+//	 public Customer validateCustomer(String customer_name, String customer_password) throws CustomerException{
+//		 Optional<Customer> customerOptional = customerRepo.findByCustomerName(customer_name);
+//		 if(customerOptional.isPresent()) {
+//			 Customer customer = customerOptional.get();
+//			 if(customer.getCustomer_password().equals(customer_password)) {
+//				 return customer;
+//			 }else {
+//				 throw new CustomerException("Invalid Password");
+//			 }
+//		 }else {
+//			 throw new CustomerException("User Not Found");
+//		 }
+//	 }
+	 
+//	 public Customer findByCustomerName(String customer_name) throws CustomerException {
+//			// TODO Auto-generated method stub
+//			Optional<Customer> customer = customerRepo.findByCustomerName(customer_name);
+//			if(customer == null) {
+//				throw new UsernameNotFoundException("Invalid user credentials");
+//			}
+//			SimpleGrantedAuthority sga = new SimpleGrantedAuthority(customer.get());
+//			List<SimpleGrantedAuthority> list = new ArrayList<>();
+//			list.add(sga);
+//			return new Customer(customer.getCustomer_name(), customer.getCustomer_password(), list);
+//		}
+	
+	
  
-	 public Customer validateCustomer(String customer_name, String customer_password) throws CustomerException{
-		 Optional<Customer> customerOptional = customerRepo.findByCustomer_name(customer_name);
-		 if(customerOptional.isPresent()) {
-			 Customer customer = customerOptional.get();
-			 if(customer.getCustomer_password().equals(customer_password)) {
-				 return customer;
-			 }else {
-				 throw new CustomerException("Invalid Password");
-			 }
-		 }else {
-			 throw new CustomerException("User Not Found");
-		 }
-	 }
-	
-	
-
 
 }

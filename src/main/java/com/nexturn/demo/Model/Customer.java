@@ -32,8 +32,7 @@ public class Customer {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int customer_id;
 	private String customer_name;
-	private String customer_password;
-	private String customer_email_id;
+	private String customer_emailId;
 	private String customer_phone_no;
 	private String customer_gender;
 	private String address;
@@ -41,36 +40,33 @@ public class Customer {
 	private String state;
 	private String zipcode;
 	
-	
+	//for login purpose
+	@OneToOne
+	private User user;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private FoodCart foodCart;
-	
-//	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	private Address address;
-
 
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(int customer_id, String customer_name, String customer_password, String customer_email_id,
-			String customer_phone_no, String customer_gender, String address, String city, String state, String zipcode,
+	public Customer(int customer_id, String customer_name, String customer_emailId, String customer_phone_no,
+			String customer_gender, String address, String city, String state, String zipcode, User user,
 			FoodCart foodCart) {
 		super();
 		this.customer_id = customer_id;
 		this.customer_name = customer_name;
-		this.customer_password = customer_password;
-		this.customer_email_id = customer_email_id;
+		this.customer_emailId = customer_emailId;
 		this.customer_phone_no = customer_phone_no;
 		this.customer_gender = customer_gender;
 		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.zipcode = zipcode;
+		this.user = user;
 		this.foodCart = foodCart;
 	}
 
@@ -90,20 +86,12 @@ public class Customer {
 		this.customer_name = customer_name;
 	}
 
-	public String getCustomer_password() {
-		return customer_password;
+	public String getCustomer_emailId() {
+		return customer_emailId;
 	}
 
-	public void setCustomer_password(String customer_password) {
-		this.customer_password = customer_password;
-	}
-
-	public String getCustomer_email_id() {
-		return customer_email_id;
-	}
-
-	public void setCustomer_email_id(String customer_email_id) {
-		this.customer_email_id = customer_email_id;
+	public void setCustomer_emailId(String customer_emailId) {
+		this.customer_emailId = customer_emailId;
 	}
 
 	public String getCustomer_phone_no() {
@@ -154,6 +142,14 @@ public class Customer {
 		this.zipcode = zipcode;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public FoodCart getFoodCart() {
 		return foodCart;
 	}
@@ -161,16 +157,13 @@ public class Customer {
 	public void setFoodCart(FoodCart foodCart) {
 		this.foodCart = foodCart;
 	}
-
-	@Override
-	public String toString() {
-		return "Customer [customer_id=" + customer_id + ", customer_name=" + customer_name + ", customer_password="
-				+ customer_password + ", customer_email_id=" + customer_email_id + ", customer_phone_no="
-				+ customer_phone_no + ", customer_gender=" + customer_gender + ", address=" + address + ", city=" + city
-				+ ", state=" + state + ", zipcode=" + zipcode + ", foodCart=" + foodCart + "]";
-	}
+	
+//	
+//	@OneToOne(cascade = CascadeType.ALL)
+//	private Address address;
 
 
+	
 	
 	
 	

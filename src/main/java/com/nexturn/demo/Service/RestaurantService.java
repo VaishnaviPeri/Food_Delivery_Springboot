@@ -15,7 +15,9 @@ public interface RestaurantService {
 	
 	public Restaurants viewRestaurant(Integer restautrant_id) throws RestaurantException;
 	
-	public Restaurants validateRestaurant(String manager_name, String manager_password) throws RestaurantException;
+	public Restaurants viewRestaurantByName(String restaurant_name) throws RestaurantException;
+	
+//	public Restaurants validateRestaurant(String manager_name, String manager_password) throws RestaurantException;
 	
 
 }

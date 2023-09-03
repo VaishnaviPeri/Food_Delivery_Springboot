@@ -32,8 +32,6 @@ public class Restaurants {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int restaurant_id;
 	private String restaurant_name;
-	private String manager_name;
-	private String manager_password;
 	private String restaurant_contact;
 	private String restaurant_address;
 	
@@ -45,21 +43,24 @@ public class Restaurants {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Menu> menuList = new ArrayList<>();
 
+	//for login purpose
+	@OneToOne
+	private User user;
+
 	public Restaurants() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Restaurants(int restaurant_id, String restaurant_name, String manager_name, String manager_password, String restaurant_contact,
-			String restaurant_address, List<Menu> menuList) {
+	public Restaurants(int restaurant_id, String restaurant_name, String restaurant_contact, String restaurant_address,
+			List<Menu> menuList, User user) {
 		super();
 		this.restaurant_id = restaurant_id;
 		this.restaurant_name = restaurant_name;
-		this.manager_name = manager_name;
-		this.manager_password= manager_password;
 		this.restaurant_contact = restaurant_contact;
 		this.restaurant_address = restaurant_address;
 		this.menuList = menuList;
+		this.user = user;
 	}
 
 	public int getRestaurant_id() {
@@ -76,22 +77,6 @@ public class Restaurants {
 
 	public void setRestaurant_name(String restaurant_name) {
 		this.restaurant_name = restaurant_name;
-	}
-
-	public String getManager_name() {
-		return manager_name;
-	}
-
-	public void setManager_name(String manager_name) {
-		this.manager_name = manager_name;
-	}
-	
-	public String getManager_password() {
-		return manager_password;
-	}
-
-	public void setManager_password(String manager_password) {
-		this.manager_password = manager_password;
 	}
 
 	public String getRestaurant_contact() {
@@ -118,7 +103,15 @@ public class Restaurants {
 		this.menuList = menuList;
 	}
 
+	public User getUser() {
+		return user;
+	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 	
 	
 

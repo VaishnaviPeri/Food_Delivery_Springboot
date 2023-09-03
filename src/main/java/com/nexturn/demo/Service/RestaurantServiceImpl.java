@@ -59,20 +59,47 @@ public class RestaurantServiceImpl implements RestaurantService{
 			throw new RestaurantException("No Restaurant found with ID: "+restaurant_id);
 		}
 	}
+
+
+	@Override
+	public Restaurants viewRestaurantByName(String restaurant_name) throws RestaurantException {
+		Restaurants restaurant = rRepo.findByRestaurantname(restaurant_name) ;
+		if(restaurant==null) {
+			throw new RestaurantException("Restaurant "+ restaurant_name+ " Not Found");
+		}else {
+			return restaurant;
+			
+		}
+		 
+	}
 	
 	
-	 public Restaurants validateRestaurant(String manager_name, String manager_password) throws RestaurantException{
-		 Optional<Restaurants> restOptional = rRepo.findByManager_name(manager_name);
-		 if(restOptional.isPresent()) {
-			 Restaurants restaurant = restOptional.get();
-			 if(restaurant.getManager_password().equals(manager_password)) {
-				 return restaurant;
-			 }else {
-				 throw new RestaurantException("Invalid Password");
-			 }
-		 }else {
-			 throw new RestaurantException("Manager Not Found");
-		 }
-	 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	 public Restaurants validateRestaurant(String manager_name, String manager_password) throws RestaurantException{
+//		 Optional<Restaurants> restOptional = rRepo.findByManager_name(manager_name);
+//		 if(restOptional.isPresent()) {
+//			 Restaurants restaurant = restOptional.get();
+//			 if(restaurant.getManager_password().equals(manager_password)) {
+//				 return restaurant;
+//			 }else {
+//				 throw new RestaurantException("Invalid Password");
+//			 }
+//		 }else {
+//			 throw new RestaurantException("Manager Not Found");
+//		 }
+//	 }
 
 }
