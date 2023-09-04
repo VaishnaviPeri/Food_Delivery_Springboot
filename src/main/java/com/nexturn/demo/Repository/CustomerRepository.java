@@ -12,7 +12,7 @@ import com.nexturn.demo.Model.Customer;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
-	Optional<Customer> findByCustomer_name(String customer_name);
+//	Optional<Customer> findByCustomer_name(String customer_name);
 	
 	
 

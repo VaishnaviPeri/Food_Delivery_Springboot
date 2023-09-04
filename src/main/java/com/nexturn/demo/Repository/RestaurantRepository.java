@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurants, Integer>{
 	
-	Optional<Restaurants> findByManager_name(String manager_name);
+//	Optional<Restaurants> findByManager_name(String manager_name);
 	
 	@Query("SELECT r FROM Restaurants r WHERE r.restaurant_name = ?1")
 	Restaurants findByRestaurantname(String restaurant) throws RestaurantException;

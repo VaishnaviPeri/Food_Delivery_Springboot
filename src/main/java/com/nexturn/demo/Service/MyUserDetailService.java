@@ -20,9 +20,10 @@ public class MyUserDetailService implements UserDetailsService{
 	private UserRepository userRepo;
 	
 	
-	@Override
-	public UserDetails loadUserByUsername(String username)throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
+//	@Override
+	public UserDetails loadUserByUsername(String username) {
+	    
+		try {
 		User user = userRepo.findByUsername(username);
 		if(user == null) {
 			throw new UsernameNotFoundException("Invalid user credentials");
@@ -30,9 +31,11 @@ public class MyUserDetailService implements UserDetailsService{
 		SimpleGrantedAuthority sga = new SimpleGrantedAuthority(user.getRole());
 		List<SimpleGrantedAuthority> list = new ArrayList<>();
 		list.add(sga);
-		
 		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),list);
+	}catch(Exception e) {
+		throw new org.springframework.security.core.userdetails.UsernameNotFoundException("Error during user authentication",e);
 	}
+}
 
 //	@Override
 //	public UserDetails loadUserByUsername(String username)
