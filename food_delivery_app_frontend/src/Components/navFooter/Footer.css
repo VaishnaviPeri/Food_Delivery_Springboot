@@ -9,16 +9,19 @@ body {
 .footer {
     background-color: crimson;
     color: white;
-    font-size: 1.5rem; /* Reduce the font size */
+    font-size: 1.8rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
-    padding: 0.5rem 1rem; /* Adjust the padding */
+    padding: 0.5rem 1rem;
+    line-height: 1.2; 
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
+    margin:0;
+    z-index: 100;
 }
 
 .footer ul {
@@ -31,6 +34,11 @@ body {
 
 .footer li {
     transition: 0.3s;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 .footer a {
@@ -46,4 +54,5 @@ body {
 .footer li:hover {
     background-color: white;
     color: crimson;
+    height: 100%;
 }
