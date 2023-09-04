@@ -23,5 +23,8 @@ public interface RestaurantRepository extends JpaRepository<Restaurants, Integer
 	
 	@Query("SELECT r FROM Restaurants r WHERE r.restaurant_name = ?1")
 	Restaurants findByRestaurantname(String restaurant) throws RestaurantException;
+//	
+//	@Query("select a from Vendors a where a.user.username=?1")
+//	Restaurants findVendorsDetails(String username);
 
 }

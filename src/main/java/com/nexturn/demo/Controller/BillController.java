@@ -33,9 +33,9 @@ public class BillController {
 		
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<Bill> updateBill(@RequestBody Bill bill) throws BillException{
-		Bill mybill= billservice.updateBill(bill);
+	@PutMapping("/update/{bill_id}")
+	public ResponseEntity<Bill> updateBill(@PathVariable Integer bill_id) throws BillException{
+		Bill mybill= billservice.updateBill(bill_id);
 		return new ResponseEntity<Bill>(mybill, HttpStatus.ACCEPTED);
 	}
 	
@@ -53,9 +53,9 @@ public class BillController {
 	}
 	
 	@GetMapping("/totalBill/{customer_id}")
-	public ResponseEntity<String> totalBillByCustomerId(@PathVariable int customer_id) throws BillException, MenuException, CustomerException{
-	     String total = billservice.totalBillById(customer_id);
-		return new ResponseEntity<String>(total,HttpStatus.OK);
+	public ResponseEntity<Double> totalBillByCustomerId(@PathVariable int customer_id) throws BillException, MenuException, CustomerException{
+	     double total = billservice.totalBillById(customer_id);
+		return new ResponseEntity<>(total,HttpStatus.OK);
 	}
 
 

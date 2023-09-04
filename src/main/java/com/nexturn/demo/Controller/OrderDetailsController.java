@@ -34,9 +34,9 @@ public class OrderDetailsController {
        }
 	 
 	 
-	 @PutMapping("/update")
-     public ResponseEntity<OrderDetails> updateOrder(@RequestBody OrderDetails order) throws OrderDetailsException{
-     		return new ResponseEntity<OrderDetails>(odservice.updateOrderDetails(order), HttpStatus.ACCEPTED);
+	 @PutMapping("/update/{order_id}")
+     public ResponseEntity<OrderDetails> updateOrder(@PathVariable Integer order_id) throws OrderDetailsException{
+     		return new ResponseEntity<OrderDetails>(odservice.updateOrderDetails(order_id), HttpStatus.ACCEPTED);
      	
        }
 	 

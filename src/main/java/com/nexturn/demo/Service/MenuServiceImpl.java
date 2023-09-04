@@ -16,6 +16,8 @@ import com.nexturn.demo.Repository.MenuRepository;
 public class MenuServiceImpl implements MenuService {
 	@Autowired
 	MenuRepository menuRepo;
+	
+	private Menu menu;
 
 
 	public Menu addMenu(Menu menu) throws MenuException {
@@ -28,8 +30,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 	
 	
-	public Menu updateMenu(Menu menu) throws MenuException {
-		Optional<Menu> menue= menuRepo.findById(menu.getMenu_id());
+	public Menu updateMenu(Integer menu_id) throws MenuException {
+		Optional<Menu> menue= menuRepo.findById(menu_id);
 		if(menue.isPresent()) {
 			Menu updatedMenu = menue.get();
 			updatedMenu.setDish_name(menu.getDish_name());

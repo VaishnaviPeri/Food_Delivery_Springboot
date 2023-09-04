@@ -31,9 +31,9 @@ public class FoodCart {
 	private int cart_id;
 	
 
-//    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
 //    JsonIgnore
-//    private Bill bill;
+    private Bill bill;
 	
     @OneToOne(cascade= CascadeType.ALL)
     @JsonIgnore

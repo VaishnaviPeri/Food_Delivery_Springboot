@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nexturn.demo.ExceptionHandling.CustomerException;
 import com.nexturn.demo.ExceptionHandling.RestaurantException;
+import com.nexturn.demo.Model.Bill;
 import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Model.Restaurants;
 import com.nexturn.demo.Repository.RestaurantRepository;
@@ -16,6 +17,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 	
 	@Autowired
 	RestaurantRepository rRepo;
+	private Restaurants restaurant;
 
 	
 	public Restaurants addRestaurant(Restaurants restaurant) throws RestaurantException {
@@ -28,10 +30,18 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 
 
-	public Restaurants updateRestaurant(Restaurants restaurant) throws RestaurantException {
-		Optional<Restaurants> opt = rRepo.findById(restaurant.getRestaurant_id());
-		if(opt.isPresent()) {
-			return rRepo.save(restaurant);
+	public Restaurants updateRestaurant(Integer restaurant_id) throws RestaurantException {
+		Optional<Restaurants> billUpdate = rRepo.findById(restaurant_id);
+		
+		if(billUpdate.isPresent()) {
+			Restaurants updatedRestaurants = billUpdate.get();
+			updatedRestaurants.setRestaurant_name(restaurant.getRestaurant_name());
+			updatedRestaurants.setRestaurant_contact(restaurant.getRestaurant_contact());
+			updatedRestaurants.setRestaurant_address(restaurant.getRestaurant_address());
+			updatedRestaurants.setMenuList(restaurant.getMenuList());
+			
+			return rRepo.save(updatedRestaurants);
+			
 		}else {
 			throw new RestaurantException("No such Restaurant exists..");
 		}

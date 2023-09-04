@@ -34,9 +34,9 @@ public class MenuController {
 }
 	
 	@PutMapping("/update/{menu_id}")
-	public ResponseEntity<Menu> updateMenu(@RequestBody Menu menu) throws MenuException{
-		Menu menue= mservice.updateMenu(menu);
-		return new ResponseEntity<Menu>(menue, HttpStatus.ACCEPTED);
+	public ResponseEntity<Menu> updateMenu(@PathVariable Integer menu_id) throws MenuException{
+		Menu menu= mservice.updateMenu(menu_id);
+		return new ResponseEntity<Menu>(menu, HttpStatus.ACCEPTED);
 				
 	}
 	

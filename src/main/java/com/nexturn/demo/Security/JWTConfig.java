@@ -54,6 +54,7 @@ public class JWTConfig {
 //	        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
 //	    }
 	
+	@SuppressWarnings("removal")
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 		http.authorizeHttpRequests((authorise) -> {

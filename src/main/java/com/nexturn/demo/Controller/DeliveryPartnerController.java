@@ -39,8 +39,8 @@ public class DeliveryPartnerController {
 	
 	
 	@PutMapping("updatedelpartner/{id}")
-	public ResponseEntity<DeliveryPartner> updateDeliveryPartner(@RequestBody DeliveryPartner delpartner) throws DeliveryPartnerNotFoundException{
-		DeliveryPartner dp= dpservice.updateDeliveryPartner(delpartner);
+	public ResponseEntity<DeliveryPartner> updateDeliveryPartner(@PathVariable Integer id) throws DeliveryPartnerNotFoundException{
+		DeliveryPartner dp= dpservice.updateDeliveryPartner(id);
 		return new ResponseEntity<DeliveryPartner>(dp, HttpStatus.ACCEPTED);
 	}
 	

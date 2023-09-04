@@ -28,6 +28,8 @@ public class DeliveryPartnerService {
 	@Autowired
 	private DeliveryPartnerRepository dpr;
 	
+	private DeliveryPartner delpartner;
+	
 	
 	
 	// add delivery Partner
@@ -55,8 +57,8 @@ public class DeliveryPartnerService {
 		}
 		
 		
-		public DeliveryPartner updateDeliveryPartner(DeliveryPartner delpartner) throws DeliveryPartnerNotFoundException {
-			Optional<DeliveryPartner> dpUpdate= dpr.findById(delpartner.getId());
+		public DeliveryPartner updateDeliveryPartner(Integer id) throws DeliveryPartnerNotFoundException {
+			Optional<DeliveryPartner> dpUpdate= dpr.findById(id);
 			if(dpUpdate.isPresent()) {
 				DeliveryPartner updatedDelPartner = dpUpdate.get();
 				updatedDelPartner.setDeliveryPartnerName(delpartner.getDeliveryPartnerName());

@@ -21,6 +21,7 @@ public class BillServiceImpl implements BillService {
 	@Autowired
 	BillRepository billRepo;
 	CustomerRepository customerRepo;
+	private Bill bill;
 	
 	public Bill addBill(Bill bill) throws BillException {
 		Optional<Bill> bill_1= billRepo.findById(bill.getBill_id());
@@ -46,21 +47,21 @@ public class BillServiceImpl implements BillService {
 		
 	}
 
-	@Override
-	public Bill updateBill(Bill bill) throws BillException {
-		Optional<Bill> billUpdate= billRepo.findById(bill.getBill_id());
+	public Bill updateBill(Integer bill_id) throws BillException {
+        Optional<Bill> billUpdate= billRepo.findById(bill_id);
+        Bill bill= new Bill();
 		if(billUpdate.isPresent()) {
 			Bill updatedBill = billUpdate.get();
-			updatedBill.setBill_id(bill.getBill_id());
 			updatedBill.setBill_date(bill.getBill_date());
-			updatedBill.setQuantity(bill.getBill_id());
+			updatedBill.setQuantity(bill.getQuantity());
 			updatedBill.setBill_total(bill.getBill_total());
+			
 			return billRepo.save(updatedBill);
 		}
 		else {
-		   throw new BillException("Bill with Id "+ bill.getBill_id() +"is not found");
+		   throw new BillException("Bill is not found");
 	}
-	}
+}
 
 	@Override
 	public Bill viewBill(Integer bill_id) throws BillException {
@@ -73,21 +74,19 @@ public class BillServiceImpl implements BillService {
 	}
 
 	@Override
-	public String totalBillById(Integer customer_id) throws MenuException, CustomerException {
+	public double totalBillById(Integer customer_id) throws MenuException, CustomerException {
 		
 		Optional<Customer> cOpt = customerRepo.findById(customer_id);
 		if(cOpt.isPresent()) {
 			Customer customer = cOpt.get();
-			List<Menu> items = customer.getFoodCart().getMenuList();
-			
-			if(items.size() > 0) {
-				
+			List<Menu> items = customer.getFoodCart().getMenuList();	
+			if(items.size() > 0) {			
 				Double total = 0.0;
 				for(Menu item : items) {
 					total += (item.getDish_price()*item.getQuantity()); 
 				}
 				
-				return "The total bill for "+customer.getCustomer_name()+" is "+total;
+				return total;
 				
 			}else {
 				throw new MenuException("No order items found for "+ customer.getCustomer_name());
@@ -97,5 +96,10 @@ public class BillServiceImpl implements BillService {
 			throw new CustomerException("No Customer found with ID: "+ customer_id);
 		}
 	}
+	
+	
+//	updatedBill.setBill_date(bill.getBill_date());
+//	updatedBill.setQuantity(bill.getBill_id());
+//	updatedBill.setBill_total(bill.getBill_total());
 
 }

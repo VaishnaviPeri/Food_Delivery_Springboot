@@ -25,6 +25,8 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 	
 	@Autowired
 	CustomerRepository customerRepo;
+	
+	private OrderDetails orderdetails;
 
 	
 	public OrderDetails addOrder(OrderDetails orderDetails) throws OrderDetailsException {
@@ -51,8 +53,9 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 	}
 
 	
-	public OrderDetails updateOrderDetails(OrderDetails orderdetails) throws OrderDetailsException {
-		Optional<OrderDetails> UpdateOD= odRepo.findById(orderdetails.getOrder_id());
+	public OrderDetails updateOrderDetails(Integer order_id) throws OrderDetailsException {
+		Optional<OrderDetails> UpdateOD= odRepo.findById(order_id);
+		
 		if(UpdateOD.isPresent()) {
 			OrderDetails updatedOD = UpdateOD.get();
 			updatedOD.setOrder_status(orderdetails.getOrder_status());

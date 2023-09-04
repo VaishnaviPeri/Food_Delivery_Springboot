@@ -13,7 +13,7 @@ public interface OrderDetailsService {
 	
 	public OrderDetails removeOrder(Integer order_id) throws OrderDetailsException;
 	
-	public OrderDetails updateOrderDetails(OrderDetails orderDetails) throws OrderDetailsException;
+	public OrderDetails updateOrderDetails(Integer order_id) throws OrderDetailsException;
 	
 	public OrderDetails viewOrder(Integer order_id) throws OrderDetailsException;
 	
