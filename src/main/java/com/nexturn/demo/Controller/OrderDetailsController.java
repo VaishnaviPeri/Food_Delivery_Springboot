@@ -36,7 +36,7 @@ public class OrderDetailsController {
 	 
 	 @PutMapping("/update")
      public ResponseEntity<OrderDetails> updateOrder(@RequestBody OrderDetails order) throws OrderDetailsException{
-     		return new ResponseEntity<OrderDetails>(odservice.updateOrder(order), HttpStatus.ACCEPTED);
+     		return new ResponseEntity<OrderDetails>(odservice.updateOrderDetails(order), HttpStatus.ACCEPTED);
      	
        }
 	 

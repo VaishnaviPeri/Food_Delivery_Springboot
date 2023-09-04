@@ -84,7 +84,7 @@ public class BillServiceImpl implements BillService {
 				
 				Double total = 0.0;
 				for(Menu item : items) {
-					total += (item.getCost()*item.getQuantity()); 
+					total += (item.getDish_price()*item.getQuantity()); 
 				}
 				
 				return "The total bill for "+customer.getCustomer_name()+" is "+total;

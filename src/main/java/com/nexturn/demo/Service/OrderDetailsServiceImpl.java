@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nexturn.demo.ExceptionHandling.CustomerException;
+import com.nexturn.demo.ExceptionHandling.DeliveryPartnerNotFoundException;
 import com.nexturn.demo.ExceptionHandling.OrderDetailsException;
 import com.nexturn.demo.Model.Customer;
+import com.nexturn.demo.Model.DeliveryPartner;
 import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Model.OrderDetails;
 import com.nexturn.demo.Repository.CustomerRepository;
@@ -49,14 +51,21 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 	}
 
 	
-	public OrderDetails updateOrder(OrderDetails orderDetails) throws OrderDetailsException {
-		Optional<OrderDetails> opt = odRepo.findById(orderDetails.getOrder_id());
-		if(opt.isPresent()) {
-			return odRepo.save(orderDetails);
-		}else {
-			throw new OrderDetailsException("Order such Order exists..");
+	public OrderDetails updateOrderDetails(OrderDetails orderdetails) throws OrderDetailsException {
+		Optional<OrderDetails> UpdateOD= odRepo.findById(orderdetails.getOrder_id());
+		if(UpdateOD.isPresent()) {
+			OrderDetails updatedOD = UpdateOD.get();
+			updatedOD.setOrder_status(orderdetails.getOrder_status());
+			updatedOD.setOrder_date(orderdetails.getOrder_date());
+			updatedOD.setBill(orderdetails.getBill());
+			updatedOD.setCart(orderdetails.getCart());
+		
+			return odRepo.save(updatedOD);
 		}
+		else {
+		   throw new OrderDetailsException("Order Details with Id "+ orderdetails.getOrder_id() +" is not found");
 	}
+}
 
 	
 	public OrderDetails viewOrder(Integer order_id) throws OrderDetailsException {
@@ -83,6 +92,17 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 			throw new CustomerException("No Customer found with ID: "+customer_id);
 		}
 	}
+
+
+//	public OrderDetails updateOrder(OrderDetails orderDetails) throws OrderDetailsException {
+//	Optional<OrderDetails> opt = odRepo.findById(orderDetails.getOrder_id());
+//	if(opt.isPresent()) {
+//		return odRepo.save(orderDetails);
+//	}else {
+//		throw new OrderDetailsException("Order such Order exists..");
+//	}
+//}
+	
 	
 
 }

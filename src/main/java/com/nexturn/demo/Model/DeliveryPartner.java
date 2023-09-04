@@ -1,6 +1,8 @@
 package com.nexturn.demo.Model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
@@ -8,11 +10,11 @@ import jakarta.persistence.OneToOne;
 public class DeliveryPartner {
 	
 	@Id
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String DiliveryPatnerName;
-	private String DiliveryPatneContact;
-	private String DiliveryPatnEmail;
+	private String deliveryPartnerName;
+	private String deliveryPartnerContact;
+	private String deliveryPartnerEmail;
 	
 	@OneToOne
 	private User user;
@@ -22,13 +24,13 @@ public class DeliveryPartner {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DeliveryPartner(int id, String diliveryPatnerName, String diliveryPatneContact, String diliveryPatnEmail,
-			User user) {
+	public DeliveryPartner(int id, String deliveryPartnerName, String deliveryPartnerContact,
+			String deliveryPartnerEmail, User user) {
 		super();
 		this.id = id;
-		DiliveryPatnerName = diliveryPatnerName;
-		DiliveryPatneContact = diliveryPatneContact;
-		DiliveryPatnEmail = diliveryPatnEmail;
+		this.deliveryPartnerName = deliveryPartnerName;
+		this.deliveryPartnerContact = deliveryPartnerContact;
+		this.deliveryPartnerEmail = deliveryPartnerEmail;
 		this.user = user;
 	}
 
@@ -40,28 +42,28 @@ public class DeliveryPartner {
 		this.id = id;
 	}
 
-	public String getDiliveryPatnerName() {
-		return DiliveryPatnerName;
+	public String getDeliveryPartnerName() {
+		return deliveryPartnerName;
 	}
 
-	public void setDiliveryPatnerName(String diliveryPatnerName) {
-		DiliveryPatnerName = diliveryPatnerName;
+	public void setDeliveryPartnerName(String deliveryPartnerName) {
+		this.deliveryPartnerName = deliveryPartnerName;
 	}
 
-	public String getDiliveryPatneContact() {
-		return DiliveryPatneContact;
+	public String getDeliveryPartnerContact() {
+		return deliveryPartnerContact;
 	}
 
-	public void setDiliveryPatneContact(String diliveryPatneContact) {
-		DiliveryPatneContact = diliveryPatneContact;
+	public void setDeliveryPartnerContact(String deliveryPartnerContact) {
+		this.deliveryPartnerContact = deliveryPartnerContact;
 	}
 
-	public String getDiliveryPatnEmail() {
-		return DiliveryPatnEmail;
+	public String getDeliveryPartnerEmail() {
+		return deliveryPartnerEmail;
 	}
 
-	public void setDiliveryPatnEmail(String diliveryPatnEmail) {
-		DiliveryPatnEmail = diliveryPatnEmail;
+	public void setDeliveryPartnerEmail(String deliveryPartnerEmail) {
+		this.deliveryPartnerEmail = deliveryPartnerEmail;
 	}
 
 	public User getUser() {
@@ -71,6 +73,7 @@ public class DeliveryPartner {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	
 	
 

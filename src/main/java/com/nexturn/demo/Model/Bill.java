@@ -2,8 +2,12 @@ package com.nexturn.demo.Model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +27,11 @@ public class Bill {
 	private LocalDateTime bill_date;
 	private double bill_total;
 	private int quantity;
+	
+	@OneToOne(cascade= CascadeType.ALL)
+	@JsonIgnore
+	private FoodCart foodcart;
+	
 	
 	public Bill() {
 		super();

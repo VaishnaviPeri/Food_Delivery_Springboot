@@ -11,7 +11,7 @@ public interface CustomerService {
 	
 	public Customer removeCustomer(Integer customer_id) throws CustomerException;
 	
-	public Customer updatecustomer(Customer customer) throws CustomerException;
+	public Customer updateCustomer(Customer customer) throws CustomerException;
 	
 	Customer viewCustomer(Integer customer_id) throws CustomerException;
 	

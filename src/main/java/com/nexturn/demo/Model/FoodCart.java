@@ -30,13 +30,19 @@ public class FoodCart {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int cart_id;
 	
+
+//    @OneToOne(cascade=CascadeType.ALL)
+//    JsonIgnore
+//    private Bill bill;
+	
     @OneToOne(cascade= CascadeType.ALL)
     @JsonIgnore
     private Customer customer;
     
     @OneToMany(cascade= CascadeType.ALL)
     private List<Menu> menuList;
-
+    
+    
 	public FoodCart() {
 		super();
 		// TODO Auto-generated constructor stub

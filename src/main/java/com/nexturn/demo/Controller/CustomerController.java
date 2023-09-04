@@ -52,7 +52,7 @@ public class CustomerController {
 
 	@PutMapping("/update/{customer_id}")
 	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) throws CustomerException {
-		Customer cust = cservice.updatecustomer(customer);
+		Customer cust = cservice.updateCustomer(customer);
 		return new ResponseEntity<Customer>(cust, HttpStatus.ACCEPTED);
 
 	}

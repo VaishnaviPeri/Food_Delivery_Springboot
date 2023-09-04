@@ -31,21 +31,21 @@ public class Menu {
 	private double dish_price;
 	private int quantity;
 	private String category;
-	private double cost;
+	
 	
 	public Menu() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Menu(int menu_id, String dish_name, double dish_price, int quantity, String category, double cost) {
+	public Menu(int menu_id, String dish_name, double dish_price, int quantity, String category) {
 		super();
 		this.menu_id = menu_id;
 		this.dish_name = dish_name;
 		this.dish_price = dish_price;
 		this.quantity = quantity;
 		this.category = category;
-		this.cost = cost;
+		
 	}
 
 	public int getMenu_id() {
@@ -88,18 +88,12 @@ public class Menu {
 		this.category = category;
 	}
 
-	public double getCost() {
-		return cost;
-	}
-
-	public void setCost(double cost) {
-		this.cost = cost;
-	}
+	
 
 	@Override
 	public String toString() {
 		return "Menu [menu_id=" + menu_id + ", dish_name=" + dish_name + ", dish_price=" + dish_price + ", quantity="
-				+ quantity + ", category=" + category + ", cost=" + cost + "]";
+				+ quantity + ", category=" + category + "]";
 	}
 	
 	

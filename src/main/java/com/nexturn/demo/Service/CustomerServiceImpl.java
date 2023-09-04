@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.nexturn.demo.ExceptionHandling.CustomerException;
 import com.nexturn.demo.Model.Customer;
+import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Repository.CustomerRepository;
 
 @Service
@@ -19,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerRepository customerRepo;
 
 	
-
+     //add customer
 	public Customer addCustomer(Customer customer) throws CustomerException {
 		Optional<Customer> cust= customerRepo.findById(customer.getCustomer_id());
 		if(!cust.isPresent()) {
@@ -29,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 	}
 
-	
+	//remove customer based on id
 	public Customer removeCustomer(Integer customer_id) throws CustomerException {
 		Optional<Customer> cust= customerRepo.findById(customer_id);
 		if(cust.isPresent()) {
@@ -38,23 +39,45 @@ public class CustomerServiceImpl implements CustomerService {
 			return cust_1;
 			
 		}else {
-			throw new CustomerException("customer not dounf with ID "+ customer_id);
+			throw new CustomerException("customer not found with ID "+ customer_id);
 		}
 
 	}
 
 
-	public Customer updatecustomer(Customer customer) throws CustomerException {
-		Optional<Customer> opt = customerRepo.findById(customer.getCustomer_id());
-		if(opt.isPresent()) {
-			return customerRepo.save(customer);
-		}else {
-			throw new CustomerException("No such customer exists..");
-		}
+//	public Customer updatecustomer(Customer customer) throws CustomerException {
+//		Optional<Customer> opt = customerRepo.findById(customer.getCustomer_id());
+//		if(opt.isPresent()) {
+//			return customerRepo.save(customer);
+//		}else {
+//			throw new CustomerException("No such customer exists..");
+//		}
+//	
+//	}
 	
+	//update customer
+	public Customer updateCustomer(Customer customer) throws CustomerException {
+		Optional<Customer> cust= customerRepo.findById(customer.getCustomer_id());
+		if(cust.isPresent()) {
+			Customer updatedCustomer = cust.get();
+			updatedCustomer.setCustomer_name(customer.getCustomer_name());
+			updatedCustomer.setCustomer_emailId(customer.getCustomer_emailId());
+			updatedCustomer.setCustomer_phone_no(customer.getCustomer_phone_no());
+			updatedCustomer.setCustomer_gender(customer.getCustomer_gender());
+			updatedCustomer.setAddress(customer.getAddress());
+			updatedCustomer.setCity(customer.getCity());
+			updatedCustomer.setState(customer.getState());
+			updatedCustomer.setZipcode(customer.getZipcode());
+			updatedCustomer.setFoodCart(customer.getFoodCart());
+		
+			return customerRepo.save(updatedCustomer);
+		}
+		else {
+		   throw new CustomerException("Customer with Id "+ customer.getCustomer_id() +" is not found");
 	}
+}
 
-
+  //view customer by id
 	public Customer viewCustomer(Integer customer_id) throws CustomerException {
 		Optional<Customer> opt = customerRepo.findById(customer_id);
 		if(opt.isPresent()) {
@@ -65,7 +88,21 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 	}
 
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 //	public Customer viewCustomer(Customer customer) throws CustomerException {
 //		// TODO Auto-generated method stub

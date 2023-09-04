@@ -13,6 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -24,7 +25,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @ToString
-
+//@Builder 
 public class Customer {
 	//defining user attributes for user entity
 	
