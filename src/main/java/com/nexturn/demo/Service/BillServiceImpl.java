@@ -47,9 +47,8 @@ public class BillServiceImpl implements BillService {
 		
 	}
 
-	public Bill updateBill(Integer bill_id) throws BillException {
+	public Bill updateBill(Integer bill_id, Bill bill) throws BillException {
         Optional<Bill> billUpdate= billRepo.findById(bill_id);
-        Bill bill= new Bill();
 		if(billUpdate.isPresent()) {
 			Bill updatedBill = billUpdate.get();
 			updatedBill.setBill_date(bill.getBill_date());

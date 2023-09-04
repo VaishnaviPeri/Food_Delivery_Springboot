@@ -28,7 +28,7 @@ public class DeliveryPartnerService {
 	@Autowired
 	private DeliveryPartnerRepository dpr;
 	
-	private DeliveryPartner delpartner;
+	
 	
 	
 	
@@ -44,7 +44,7 @@ public class DeliveryPartnerService {
 		}
 		
 		
-		public DeliveryPartner removeDeliveryPartner(Integer id ) throws DeliveryPartnerNotFoundException {
+		public DeliveryPartner removeDeliveryPartner(Integer id) throws DeliveryPartnerNotFoundException {
 			Optional<DeliveryPartner> dp= dpr.findById(id);
 			if(dp.isPresent()) {
 				DeliveryPartner dp_1= dp.get();
@@ -57,7 +57,7 @@ public class DeliveryPartnerService {
 		}
 		
 		
-		public DeliveryPartner updateDeliveryPartner(Integer id) throws DeliveryPartnerNotFoundException {
+		public DeliveryPartner updateDeliveryPartner(Integer id, DeliveryPartner delpartner) throws DeliveryPartnerNotFoundException {
 			Optional<DeliveryPartner> dpUpdate= dpr.findById(id);
 			if(dpUpdate.isPresent()) {
 				DeliveryPartner updatedDelPartner = dpUpdate.get();

@@ -17,7 +17,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 	
 	@Autowired
 	RestaurantRepository rRepo;
-	private Restaurants restaurant;
+	
 
 	
 	public Restaurants addRestaurant(Restaurants restaurant) throws RestaurantException {
@@ -30,7 +30,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 
 
-	public Restaurants updateRestaurant(Integer restaurant_id) throws RestaurantException {
+	public Restaurants updateRestaurant(Integer restaurant_id, Restaurants restaurant) throws RestaurantException {
 		Optional<Restaurants> billUpdate = rRepo.findById(restaurant_id);
 		
 		if(billUpdate.isPresent()) {

@@ -9,7 +9,7 @@ public interface RestaurantService {
 	
 	public Restaurants addRestaurant(Restaurants restaurant) throws RestaurantException;
 	
-	public Restaurants updateRestaurant(Integer restaurant_id) throws RestaurantException;
+	public Restaurants updateRestaurant(Integer restaurant_id,Restaurants restaurant) throws RestaurantException;
 	
 	public Restaurants removeRestauarant(Integer restaurant_id) throws RestaurantException;
 	

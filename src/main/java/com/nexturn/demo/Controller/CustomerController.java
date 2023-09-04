@@ -51,8 +51,8 @@ public class CustomerController {
 	}
 
 	@PutMapping("/update/{customer_id}")
-	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) throws CustomerException {
-		Customer cust = cservice.updateCustomer(customer);
+	public ResponseEntity<Customer> updateCustomer(@PathVariable Integer customer_id, @RequestBody Customer customer) throws CustomerException {
+		Customer cust = cservice.updateCustomer(customer_id,customer);
 		return new ResponseEntity<Customer>(cust, HttpStatus.ACCEPTED);
 
 	}
@@ -60,7 +60,7 @@ public class CustomerController {
 	@DeleteMapping("/delete/{customer_id}")
 	public ResponseEntity<Customer> removeCustomer(@PathVariable int customer_id) throws CustomerException {
 		Customer cust = cservice.removeCustomer(customer_id);
-		return new ResponseEntity<Customer>(cust, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 //	public AuthController(CustomerService cservice, JWTConfig jwtConfig) {

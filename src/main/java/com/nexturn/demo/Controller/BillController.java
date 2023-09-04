@@ -34,8 +34,8 @@ public class BillController {
 	}
 	
 	@PutMapping("/update/{bill_id}")
-	public ResponseEntity<Bill> updateBill(@PathVariable Integer bill_id) throws BillException{
-		Bill mybill= billservice.updateBill(bill_id);
+	public ResponseEntity<Bill> updateBill(@PathVariable Integer bill_id, @RequestBody Bill bill) throws BillException{
+		Bill mybill= billservice.updateBill(bill_id, bill);
 		return new ResponseEntity<Bill>(mybill, HttpStatus.ACCEPTED);
 	}
 	

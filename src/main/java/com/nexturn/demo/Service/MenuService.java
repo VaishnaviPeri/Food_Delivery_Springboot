@@ -8,7 +8,7 @@ import com.nexturn.demo.Model.Menu;
 public interface MenuService {
 	public Menu addMenu(Menu Menu) throws MenuException;
 
-	public Menu updateMenu(Integer menu_id) throws MenuException;
+	public Menu updateMenu(Integer menu_id, Menu menu) throws MenuException;
 
 	public Menu viewMenu(Integer MenuId) throws MenuException;
 

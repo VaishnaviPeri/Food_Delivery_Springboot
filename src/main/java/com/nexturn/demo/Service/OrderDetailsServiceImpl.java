@@ -53,7 +53,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 	}
 
 	
-	public OrderDetails updateOrderDetails(Integer order_id) throws OrderDetailsException {
+	public OrderDetails updateOrderDetails(Integer order_id, OrderDetails orderdetails) throws OrderDetailsException {
 		Optional<OrderDetails> UpdateOD= odRepo.findById(order_id);
 		
 		if(UpdateOD.isPresent()) {

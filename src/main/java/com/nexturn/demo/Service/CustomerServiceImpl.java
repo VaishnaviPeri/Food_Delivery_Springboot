@@ -18,15 +18,18 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
 	CustomerRepository customerRepo;
+	
+	
 
 	
      //add customer
 	public Customer addCustomer(Customer customer) throws CustomerException {
 		Optional<Customer> cust= customerRepo.findById(customer.getCustomer_id());
 		if(!cust.isPresent()) {
-			throw new CustomerException("Customer not found");	
-		}else {
 			return customerRepo.save(customer);
+			
+		}else {
+			throw new CustomerException("Customer already exists");	
 		}
 	}
 
@@ -56,8 +59,8 @@ public class CustomerServiceImpl implements CustomerService {
 //	}
 	
 	//update customer
-	public Customer updateCustomer(Customer customer) throws CustomerException {
-		Optional<Customer> cust= customerRepo.findById(customer.getCustomer_id());
+	public Customer updateCustomer(Integer customer_id, Customer customer) throws CustomerException {
+		Optional<Customer> cust= customerRepo.findById(customer_id);
 		if(cust.isPresent()) {
 			Customer updatedCustomer = cust.get();
 			updatedCustomer.setCustomer_name(customer.getCustomer_name());

@@ -17,7 +17,7 @@ public class MenuServiceImpl implements MenuService {
 	@Autowired
 	MenuRepository menuRepo;
 	
-	private Menu menu;
+
 
 
 	public Menu addMenu(Menu menu) throws MenuException {
@@ -30,7 +30,7 @@ public class MenuServiceImpl implements MenuService {
 	}
 	
 	
-	public Menu updateMenu(Integer menu_id) throws MenuException {
+	public Menu updateMenu(Integer menu_id, Menu menu) throws MenuException {
 		Optional<Menu> menue= menuRepo.findById(menu_id);
 		if(menue.isPresent()) {
 			Menu updatedMenu = menue.get();
