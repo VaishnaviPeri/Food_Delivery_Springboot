@@ -14,8 +14,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
 //	Optional<Customer> findByCustomer_name(String customer_name);
 	
-//	@Query("select a from Customer a where a.user.username=?1")
-//	Customer findACustomerDetails(String username);
+	@Query("select a from Customer a where a.user.username=?1")
+	Customer findACustomerDetails(String username);
 	
 //	@Query("select a.airlineCode from Customer a where a.user.username=?1")
 //	String getACustomerCode(String username);

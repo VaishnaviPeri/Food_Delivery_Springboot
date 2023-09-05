@@ -47,11 +47,11 @@ public class RestaurantController {
 	@GetMapping("/view/{restaurant_id}")
 	public ResponseEntity<Restaurants> getByResturantId(@PathVariable  Integer restaurant_id ) throws RestaurantException{
     			Restaurants restaurant =rservice.viewRestaurant(restaurant_id);	
-    			return new ResponseEntity<Restaurants>(restaurant ,HttpStatus.ACCEPTED);   	
+    			return new ResponseEntity<Restaurants>(restaurant ,HttpStatus.OK);   	
     	
 	}
 	
-	@GetMapping("/view/{restaurant_name}")
+	@GetMapping("/viewbyname/{restaurant_name}")
 	public ResponseEntity<Restaurants> getByRestaurantName(@PathVariable String restaurant_name) throws RestaurantException{
 		try {
 		Restaurants restaurant = rservice.viewRestaurantByName(restaurant_name);

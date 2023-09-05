@@ -25,27 +25,32 @@ public class DeliveryPartnerController {
 	
 	
 	
-	@PostMapping("/adddelpartner")
-	public ResponseEntity<DeliveryPartner> addDeliveryPartner(DeliveryPartner delpartner) throws DeliveryPartnerNotFoundException{
+	@PostMapping("/add")
+	public ResponseEntity<DeliveryPartner> addDeliveryPartner(@RequestBody DeliveryPartner delpartner) throws DeliveryPartnerNotFoundException{
+		try {
+		
 		DeliveryPartner dp = dpservice.addDeliveryPartner(delpartner);
-		return new ResponseEntity<DeliveryPartner>(delpartner, HttpStatus.CREATED);
+		return new ResponseEntity<>(dp,HttpStatus.CREATED);
+		}catch(DeliveryPartnerNotFoundException e){
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
-	@GetMapping("/viewdelpartner/{id}")
+	@GetMapping("/view/{id}")
 	public ResponseEntity<DeliveryPartner> viewDeliveryPartner(@PathVariable Integer id) throws DeliveryPartnerNotFoundException{
 		DeliveryPartner dp = dpservice.viewDeliveryPartner(id);
 		return new ResponseEntity<DeliveryPartner>(dp, HttpStatus.FOUND);
 	}
 	
 	
-	@PutMapping("updatedelpartner/{id}")
+	@PutMapping("update/{id}")
 	public ResponseEntity<DeliveryPartner> updateDeliveryPartner(@PathVariable Integer id, @RequestBody DeliveryPartner dpartner) throws DeliveryPartnerNotFoundException{
 		DeliveryPartner dp= dpservice.updateDeliveryPartner(id, dpartner);
 		return new ResponseEntity<DeliveryPartner>(dp, HttpStatus.ACCEPTED);
 	}
 	
 	
-	@DeleteMapping("removedelpartner/{id}")
+	@DeleteMapping("remove/{id}")
 	public ResponseEntity<DeliveryPartner> removeDeliveryPartner(@PathVariable Integer id) throws DeliveryPartnerNotFoundException{
 		DeliveryPartner dp= dpservice.removeDeliveryPartner(id);
 		return new ResponseEntity<DeliveryPartner>(dp, HttpStatus.OK);

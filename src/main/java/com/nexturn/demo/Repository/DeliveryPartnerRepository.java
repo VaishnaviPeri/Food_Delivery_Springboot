@@ -12,5 +12,8 @@ public interface DeliveryPartnerRepository extends JpaRepository<DeliveryPartner
 	
 	@Query("select d from DeliveryPartner d where d.user.username=?1")
 	DeliveryPartner findByUsername(String username);
+	
+	@Query("SELECT d from DeliveryPartner d where d.user.username=?1 ")
+	DeliveryPartner findDeliveryPartnerDetails(String username);
 
 }

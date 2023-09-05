@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,13 +35,9 @@ public class Restaurants {
 	private String restaurant_name;
 	private String restaurant_contact;
 	private String restaurant_address;
+
 	
-	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JsonIgnore
-//	private Address address;
-	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Menu> menuList = new ArrayList<>();
 
 	//for login purpose

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.nexturn.demo.ExceptionHandling.RestaurantException;
 import com.nexturn.demo.ExceptionHandling.UsernameNotFoundException;
 import com.nexturn.demo.Model.Customer;
+import com.nexturn.demo.Model.DeliveryPartner;
 import com.nexturn.demo.Model.Restaurants;
 import com.nexturn.demo.Model.User;
 
@@ -24,7 +25,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurants, Integer
 	@Query("SELECT r FROM Restaurants r WHERE r.restaurant_name = ?1")
 	Restaurants findByRestaurantname(String restaurant) throws RestaurantException;
 //	
-//	@Query("select a from Vendors a where a.user.username=?1")
-//	Restaurants findVendorsDetails(String username);
+	@Query("select r from Restaurants r where r.user.username=?1")
+	Restaurants findRestaurantDetails(String username);
+	
+	
 
 }

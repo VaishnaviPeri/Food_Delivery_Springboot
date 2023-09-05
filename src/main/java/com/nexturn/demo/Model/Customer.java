@@ -42,7 +42,7 @@ public class Customer {
 	private String zipcode;
 	
 	//for login purpose
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private User user;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -158,6 +158,11 @@ public class Customer {
 	public void setFoodCart(FoodCart foodCart) {
 		this.foodCart = foodCart;
 	}
+
+//	public void setUsername(String username) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 	
 //	
 //	@OneToOne(cascade = CascadeType.ALL)

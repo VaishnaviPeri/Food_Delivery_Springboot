@@ -60,7 +60,7 @@ public class JWTConfig {
 		http.authorizeHttpRequests((authorise) -> {
 			try {
 				authorise.requestMatchers("/user/login").permitAll()
-						 .requestMatchers("/user/get/details").permitAll()
+						 .requestMatchers("/user/get/details").authenticated()
 				.anyRequest()
 				 .permitAll()
 				 .and()

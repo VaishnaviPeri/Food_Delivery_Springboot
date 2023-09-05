@@ -3,10 +3,13 @@ package com.nexturn.demo.Model;
 
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,19 +36,24 @@ public class Menu {
 	private String category;
 	
 	
+	@ManyToOne
+	@JoinColumn(name="restaurant_id")
+	private Restaurants restaurant;
+	
 	public Menu() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Menu(int menu_id, String dish_name, double dish_price, int quantity, String category) {
+	public Menu(int menu_id, String dish_name, double dish_price, int quantity, String category,
+			Restaurants restaurant) {
 		super();
 		this.menu_id = menu_id;
 		this.dish_name = dish_name;
 		this.dish_price = dish_price;
 		this.quantity = quantity;
 		this.category = category;
-		
+		this.restaurant = restaurant;
 	}
 
 	public int getMenu_id() {
@@ -88,13 +96,15 @@ public class Menu {
 		this.category = category;
 	}
 
-	
-
-	@Override
-	public String toString() {
-		return "Menu [menu_id=" + menu_id + ", dish_name=" + dish_name + ", dish_price=" + dish_price + ", quantity="
-				+ quantity + ", category=" + category + "]";
+	public Restaurants getRestaurant() {
+		return restaurant;
 	}
+
+	public void setRestaurant(Restaurants restaurant) {
+		this.restaurant = restaurant;
+	}
+
+	
 	
 	
 	

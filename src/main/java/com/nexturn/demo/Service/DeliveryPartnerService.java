@@ -21,10 +21,10 @@ import com.nexturn.demo.Repository.UserRepository;
 @Service
 public class DeliveryPartnerService {
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	@Autowired
-	private UserRepository userRepository;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private UserRepository userRepository;
 	@Autowired
 	private DeliveryPartnerRepository dpr;
 	
@@ -36,8 +36,8 @@ public class DeliveryPartnerService {
 		
 		public DeliveryPartner addDeliveryPartner(DeliveryPartner delpartner) throws DeliveryPartnerNotFoundException {
 			Optional<DeliveryPartner> dp= dpr.findById(delpartner.getId());
-			if(!dp.isPresent()) {
-				throw new DeliveryPartnerNotFoundException("DeliveryPartner not found");	
+			if(dp.isPresent()) {
+				throw new DeliveryPartnerNotFoundException("DeliveryPartner already exists");	
 			}else {
 				return dpr.save(delpartner);
 			}
@@ -63,7 +63,8 @@ public class DeliveryPartnerService {
 				DeliveryPartner updatedDelPartner = dpUpdate.get();
 				updatedDelPartner.setDeliveryPartnerName(delpartner.getDeliveryPartnerName());
 				updatedDelPartner.setDeliveryPartnerEmail(delpartner.getDeliveryPartnerEmail());
-				updatedDelPartner.setDeliveryPartnerEmail(delpartner.getDeliveryPartnerContact());
+				updatedDelPartner.setDeliveryPartnerContact(delpartner.getDeliveryPartnerContact());
+				updatedDelPartner.setUser(delpartner.getUser());
 			
 				return dpr.save(updatedDelPartner);
 			}

@@ -31,7 +31,7 @@ public class MyUserDetailService implements UserDetailsService{
 		SimpleGrantedAuthority sga = new SimpleGrantedAuthority(user.getRole());
 		List<SimpleGrantedAuthority> list = new ArrayList<>();
 		list.add(sga);
-		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(),list);
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),list);
 	}catch(Exception e) {
 		throw new org.springframework.security.core.userdetails.UsernameNotFoundException("Error during user authentication",e);
 	}

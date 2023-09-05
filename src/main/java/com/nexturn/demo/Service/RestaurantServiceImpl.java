@@ -10,7 +10,9 @@ import com.nexturn.demo.ExceptionHandling.RestaurantException;
 import com.nexturn.demo.Model.Bill;
 import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Model.Restaurants;
+import com.nexturn.demo.Model.User;
 import com.nexturn.demo.Repository.RestaurantRepository;
+import com.nexturn.demo.Repository.UserRepository;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService{
@@ -18,14 +20,26 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Autowired
 	RestaurantRepository rRepo;
 	
+	@Autowired
+	UserRepository userRepo;
+	
 
 	
 	public Restaurants addRestaurant(Restaurants restaurant) throws RestaurantException {
+//		Integer restaurantId=restaurant.getRestaurant_id();
 		Optional<Restaurants> ropt = rRepo.findById(restaurant.getRestaurant_id());
 		if(ropt.isPresent()) {
 			throw new RestaurantException("Restaurant already exists");
 		}else {
-			return rRepo.save(restaurant);
+			User user = restaurant.getUser();
+	        
+	        // Check if the User exists or not
+	        if (user.getId() == 0) {
+	            // User doesn't exist in the database, so save it first
+	            User savedUser = userRepo.save(user); // Assuming userRepository is the repository for User
+	            restaurant.setUser(savedUser); // Set the saved User in the restaurant
+	        }
+	        return rRepo.save(restaurant);
 		}
 	}
 
