@@ -23,10 +23,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Autowired
 	UserRepository userRepo;
 	
-
+   
+     Restaurants restaurant;
 	
 	public Restaurants addRestaurant(Restaurants restaurant) throws RestaurantException {
-//		Integer restaurantId=restaurant.getRestaurant_id();
+		Integer restaurantId=restaurant.getRestaurant_id();
 		Optional<Restaurants> ropt = rRepo.findById(restaurant.getRestaurant_id());
 		if(ropt.isPresent()) {
 			throw new RestaurantException("Restaurant already exists");
@@ -39,8 +40,30 @@ public class RestaurantServiceImpl implements RestaurantService{
 	            User savedUser = userRepo.save(user); // Assuming userRepository is the repository for User
 	            restaurant.setUser(savedUser); // Set the saved User in the restaurant
 	        }
+	        
+			restaurant.setRestaurant_name(restaurant.getRestaurant_name());
+			restaurant.setRestaurant_contact(restaurant.getRestaurant_contact());
+			restaurant.setRestaurant_address(restaurant.getRestaurant_address());
+			restaurant.setMenuList(restaurant.getMenuList());
+			restaurant.setUser(restaurant.getUser());
 	        return rRepo.save(restaurant);
 		}
+		
+//        Optional<Restaurants> billAdd = rRepo.findById(restaurant.getRestaurant_id());
+//		
+//		if(billAdd.isPresent()) {
+//			Restaurants updatedRestaurants = billAdd.get();
+//			updatedRestaurants.setRestaurant_name(restaurant.getRestaurant_name());
+//			updatedRestaurants.setRestaurant_contact(restaurant.getRestaurant_contact());
+//			updatedRestaurants.setRestaurant_address(restaurant.getRestaurant_address());
+//			updatedRestaurants.setMenuList(restaurant.getMenuList());
+//			updatedRestaurants.setUser(restaurant.getUser());
+//			
+//			return rRepo.save(updatedRestaurants);
+//			
+//		}else {
+//			throw new RestaurantException("No such Restaurant exists..");
+//		}
 	}
 
 

@@ -35,25 +35,6 @@ public class JWTConfig {
 	@Autowired
 	private MyUserDetailService myUserDetailService;
 	
-//	    @Value("${jwt.secret}")
-//	    private String secret;
-//
-//	    @Value("${jwt.expiration}")
-//	    private long expiration;
-//
-//	    public String generateToken(String username) {
-//	        return Jwts.builder()
-//	                .setSubject(username)
-//	                .setIssuedAt(new Date())
-//	                .setExpiration(new Date(System.currentTimeMillis() + expiration))
-//	                .signWith(SignatureAlgorithm.HS256, secret)
-//	                .compact();
-//	    }
-//
-//	    public String extractUsername(String token) {
-//	        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
-//	    }
-	
 	@SuppressWarnings("removal")
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -93,4 +74,22 @@ public class JWTConfig {
 }
 
 
+//@Value("${jwt.secret}")
+//private String secret;
+//
+//@Value("${jwt.expiration}")
+//private long expiration;
+//
+//public String generateToken(String username) {
+//    return Jwts.builder()
+//            .setSubject(username)
+//            .setIssuedAt(new Date())
+//            .setExpiration(new Date(System.currentTimeMillis() + expiration))
+//            .signWith(SignatureAlgorithm.HS256, secret)
+//            .compact();
+//}
+//
+//public String extractUsername(String token) {
+//    return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+//}
 

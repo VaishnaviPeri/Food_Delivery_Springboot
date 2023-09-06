@@ -48,7 +48,7 @@ public class RestaurantController {
 	public ResponseEntity<Restaurants> getByResturantId(@PathVariable  Integer restaurant_id ) throws RestaurantException{
     			Restaurants restaurant =rservice.viewRestaurant(restaurant_id);	
     			return new ResponseEntity<Restaurants>(restaurant ,HttpStatus.OK);   	
-    	
+  	
 	}
 	
 	@GetMapping("/viewbyname/{restaurant_name}")
@@ -65,7 +65,7 @@ public class RestaurantController {
 	@DeleteMapping("/remove/{restaurantId}")
 	public ResponseEntity<Restaurants> deleteRestaurant(@PathVariable("restaurantId") Integer restaurantId) throws RestaurantException{
 		Restaurants removedRestaurant = rservice.removeRestauarant(restaurantId);
-		return new ResponseEntity<Restaurants>(removedRestaurant, HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@PostMapping("/register")

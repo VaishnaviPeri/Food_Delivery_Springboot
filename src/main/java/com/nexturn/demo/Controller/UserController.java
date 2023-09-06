@@ -1,6 +1,7 @@
 package com.nexturn.demo.Controller;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,10 +50,10 @@ public class UserController {
 	
 	
 	
-	@PostMapping("/login")
-	public Object userLogin(Principal principal) throws UsernameNotFoundException { //The principal is the currently logged in use
-		try {
-		String username = principal.getName();
+	@GetMapping("/login")
+	public Object userLogin(Principal principal) throws UsernameNotFoundException{ //The principal is the currently logged in use
+		
+	     String username = principal.getName();
 		User user = userRepo.findByUsername(username);
 		if(user == null) {
 			responseDto.setMessage("Invalid Credentials");
@@ -60,10 +61,12 @@ public class UserController {
  		}
 		user.setPassword("Hidden");
 		return user;
-	}catch(Exception e) {
-		throw new UsernameNotFoundException("User not found  !!!!", e);
+//	catch(Exception e) {
+////		throw new UsernameNotFoundException("User not found  !!!!", e);
+//		return "USer not found"+e;
+		
 	}
-}
+
 		
 		@GetMapping("/get/details")
 		public Object getUserDetails(Principal principal) throws UsernameNotFoundException {

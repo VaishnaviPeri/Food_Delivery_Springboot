@@ -9,24 +9,32 @@ import org.springframework.stereotype.Service;
 import com.nexturn.demo.ExceptionHandling.MenuException;
 import com.nexturn.demo.ExceptionHandling.MenuException;
 import com.nexturn.demo.Model.Menu;
+import com.nexturn.demo.Model.Restaurants;
 import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Repository.MenuRepository;
+import com.nexturn.demo.Repository.RestaurantRepository;
 
 @Service
 public class MenuServiceImpl implements MenuService {
 	@Autowired
 	MenuRepository menuRepo;
 	
+	@Autowired
+	RestaurantRepository restRepo;
+	
 
 
 
-	public Menu addMenu(Menu menu) throws MenuException {
-		Optional<Menu> opt = menuRepo.findById(menu.getMenu_id());
-		if(opt.isPresent()) {
-			throw new MenuException("menu already exists..");
-		}else {
-			return menuRepo.save(menu);
-		}
+	public Menu addMenu(Menu menu, Integer restaurant_id) throws MenuException {
+		Restaurants restaurant= restRepo.findById(restaurant_id).orElseThrow(()-> new MenuException("Restaurant not Found !"));
+//		Optional<Menu> opt = menuRepo.findById(menu.getMenu_id());
+//		if(opt.isPresent()) {
+//			throw new MenuException("menu already exists..");
+//		}else {
+//			return menuRepo.save(menu);
+//		}
+		menu.setRestaurant(restaurant);
+		return menuRepo.save(menu);
 	}
 	
 	
@@ -85,6 +93,8 @@ public class MenuServiceImpl implements MenuService {
 			// TODO Auto-generated method stub
 			return null;
 		}
+
+
 		
 	
 		

@@ -28,24 +28,24 @@ public class MenuController {
 
 	
 	@PostMapping("/add")
-	public ResponseEntity<Menu> addItem(@RequestBody Menu menu) throws MenuException{
-		Menu menue= mservice.addMenu(menu);
+	public ResponseEntity<Menu> addItem(@RequestBody Menu menu ,@PathVariable Integer restaurant_id) throws MenuException{
+		Menu menue= mservice.addMenu(menu, restaurant_id);
 		return new ResponseEntity<Menu>(menue,HttpStatus.CREATED);
 }
 	
 	@PutMapping("/update/{menu_id}")
 	public ResponseEntity<Menu> updateMenu(@PathVariable Integer menu_id, @RequestBody Menu men) throws MenuException{
-		Menu menu= mservice.updateMenu(menu_id, men);
+		Menu menu= mservice.updateMenu(menu_id,men);
 		return new ResponseEntity<Menu>(menu, HttpStatus.ACCEPTED);
 				
 	}
 	
 	@GetMapping("/view/{menu_id}")
 	public ResponseEntity<Menu> viewMenu(@PathVariable int menu_id) throws MenuException{
-		return new ResponseEntity<Menu>(mservice.viewMenu(menu_id), HttpStatus.FOUND);
+		return new ResponseEntity<Menu>(mservice.viewMenu(menu_id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/viewall")
+	@GetMapping("/viewallitems")
 	public ResponseEntity<List<Menu>> getAllItems() throws MenuException{
 		List<Menu> item= mservice.viewAllMenus();
 		return new ResponseEntity<List<Menu>>(item,HttpStatus.FOUND);
