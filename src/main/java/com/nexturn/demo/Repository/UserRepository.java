@@ -14,8 +14,16 @@ import com.nexturn.demo.Model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
 	
-	@Query("SELECT u FROM User u WHERE u.username = ?1")
+//	@Query("SELECT u FROM User u WHERE u.username = ?1")
 //	Optional<Customer> findByCustomerName(@Param("customer_name") String customer_name);
-	User findByUsername(String username) throws UsernameNotFoundException;
+//	User findByUsername(String username) ;
+//	
+//	User findByUsernameAndPassword(String username, String password);
+	
+	@Query("select u from User u where u.username=?1")
+	User findByUsername(String username);
+
+	@Query("select u from User u where u.id=?1")
+	User getUserByuserId(Long id);
 
 }

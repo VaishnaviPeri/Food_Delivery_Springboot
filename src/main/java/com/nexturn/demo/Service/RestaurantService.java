@@ -7,7 +7,7 @@ import com.nexturn.demo.Model.Restaurants;
 
 public interface RestaurantService {
 	
-	public Restaurants addRestaurant(Restaurants restaurant) throws RestaurantException;
+//	public Restaurants addRestaurant(Restaurants restaurant) throws RestaurantException;
 	
 	public Restaurants updateRestaurant(Integer restaurant_id,Restaurants restaurant) throws RestaurantException;
 	

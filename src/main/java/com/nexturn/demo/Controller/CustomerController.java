@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +20,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nexturn.demo.ExceptionHandling.CustomerException;
 import com.nexturn.demo.Model.Customer;
+import com.nexturn.demo.Model.User;
 import com.nexturn.demo.Repository.CustomerRepository;
+import com.nexturn.demo.Repository.UserRepository;
 import com.nexturn.demo.Security.JWTConfig;
 import com.nexturn.demo.Service.CustomerService;
+import com.nexturn.demo.dto.CustomerDto;
+import com.nexturn.demo.dto.ResponseDto;
 
 @RestController
 @RequestMapping("/customer")
-@CrossOrigin("/*")
+@CrossOrigin(origins="*")
 public class CustomerController {
 
 	@Autowired
@@ -33,18 +38,56 @@ public class CustomerController {
 	
 	@Autowired
 	CustomerRepository cRepo;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	UserRepository userRepo;
+	
+	@Autowired
+	ResponseDto responseDto;
 
 
 
-//	@Autowired
-//	JWTConfig jwtConfig;
+	@Autowired
+	JWTConfig jwtConfig;
 
-	@PostMapping("/add")
-	public ResponseEntity<Customer> addcustomer(@RequestBody Customer customer) throws CustomerException {
-		Customer cust = cservice.addCustomer(customer);
-		return new ResponseEntity<Customer>(cust, HttpStatus.CREATED);
+//	@PostMapping("/add")
+//	public ResponseEntity<Customer> addcustomer(@RequestBody Customer customer) throws CustomerException {
+//		Customer cust = cservice.addCustomer(customer);
+//		return new ResponseEntity<Customer>(cust, HttpStatus.CREATED);
+//
+//}
+	
+	@PostMapping("/register")
+	public ResponseEntity<Object> addcustomer(@RequestBody CustomerDto customerDto){
+		User user = new User();
+		user.setUsername(customerDto.getUsername());
+		user.setPassword(customerDto.getPassword());
+		user.setRole("Customer");
+		String encodePassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodePassword);
+		user = userRepo.save(user);
+		
+		Customer customer = new Customer();
+		customer.setCustomer_name(customerDto.getCustomer_name());
+		customer.setCustomer_emailId(customerDto.getCustomer_emailId());
+		customer.setCustomer_phone_no(customerDto.getCustomer_phone_no());
+		customer.setCustomer_gender(customerDto.getCustomer_gender());
+		customer.setAddress(customerDto.getAddress());
+		customer.setCity(customerDto.getCity());
+		customer.setState(customerDto.getState());
+		customer.setZipcode(customerDto.getZipcode());
+		customer.setFoodCart(customer.getFoodCart());
+		customer.setUser(user);
 
+		cRepo.save(customer);
+		responseDto.setMessage("customer registered successfully");
+		return ResponseEntity.status(HttpStatus.OK).body(responseDto);
 	}
+	
+
 
 	@GetMapping("/view/{customer_id}")
 	public ResponseEntity<Customer> viewCustomer(@PathVariable int customer_id) throws CustomerException {
@@ -90,14 +133,14 @@ public class CustomerController {
 //}
 //}
 
-	@PostMapping("/register")
-	public ResponseEntity<String> customerRegistration(@RequestBody Customer customer) throws CustomerException {
-		try {
-			cservice.addCustomer(customer);
-			return new ResponseEntity<>("Registration Successfull...!", HttpStatus.CREATED);
-		} catch (CustomerException ce) {
-			return new ResponseEntity<>("Registration failed..!", HttpStatus.BAD_REQUEST);
-		}
-	}
+//	@PostMapping("/register")
+//	public ResponseEntity<String> customerRegistration(@RequestBody Customer customer) throws CustomerException {
+//		try {
+//			cservice.addCustomer(customer);
+//			return new ResponseEntity<>("Registration Successfull...!", HttpStatus.CREATED);
+//		} catch (CustomerException ce) {
+//			return new ResponseEntity<>("Registration failed..!", HttpStatus.BAD_REQUEST);
+//		}
+//	}
 
 }

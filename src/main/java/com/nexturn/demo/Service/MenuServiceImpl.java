@@ -89,13 +89,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 		
-		public List<Menu> viewAllMenus() throws MenuException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-
 		
+	
 	
 		
 //	public Menu updateMenu(Menu menu) throws MenuException {

@@ -6,6 +6,7 @@ import org.apache.coyote.http11.Http11InputBuffer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,16 +22,21 @@ import com.nexturn.demo.Service.MenuService;
 
 @RestController()
 @RequestMapping("/menu")
+@CrossOrigin(origins="*")
 public class MenuController {
 	
 	@Autowired
 	MenuService mservice;
 
 	
-	@PostMapping("/add")
+	@PostMapping("/add/{restaurant_id}")
 	public ResponseEntity<Menu> addItem(@RequestBody Menu menu ,@PathVariable Integer restaurant_id) throws MenuException{
-		Menu menue= mservice.addMenu(menu, restaurant_id);
-		return new ResponseEntity<Menu>(menue,HttpStatus.CREATED);
+		try {
+		Menu addedmenu= mservice.addMenu(menu, restaurant_id);
+		return ResponseEntity.status(HttpStatus.CREATED).body(addedmenu);
+		}catch(MenuException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
 }
 	
 	@PutMapping("/update/{menu_id}")
@@ -47,7 +53,7 @@ public class MenuController {
 	
 	@GetMapping("/viewallitems")
 	public ResponseEntity<List<Menu>> getAllItems() throws MenuException{
-		List<Menu> item= mservice.viewAllMenus();
+		List<Menu> item= mservice.viewAllItems();
 		return new ResponseEntity<List<Menu>>(item,HttpStatus.FOUND);
 	}
 	

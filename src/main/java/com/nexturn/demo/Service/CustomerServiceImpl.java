@@ -20,18 +20,19 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerRepository customerRepo;
 	
 	
-
 	
      //add customer
-	public Customer addCustomer(Customer customer) throws CustomerException {
-		Optional<Customer> cust= customerRepo.findById(customer.getCustomer_id());
-		if(!cust.isPresent()) {
-			return customerRepo.save(customer);
-			
-		}else {
-			throw new CustomerException("Customer already exists");	
-		}
-	}
+//	public Customer addCustomer(Customer customer) throws CustomerException {
+//		Optional<Customer> cust= customerRepo.findById(customer.getCustomer_id());
+//		if(!cust.isPresent()) {
+//			
+//			return customerRepo.save(customer);
+//			
+//		}else {
+//			throw new CustomerException("Customer already exists");	
+//		}
+//	}
+//	
 
 	//remove customer based on id
 	public Customer removeCustomer(Integer customer_id) throws CustomerException {
@@ -90,6 +91,8 @@ public class CustomerServiceImpl implements CustomerService {
 			throw new CustomerException("No Customer found with ID: "+customer_id);
 		}
 	}
+
+
 
 	
 	

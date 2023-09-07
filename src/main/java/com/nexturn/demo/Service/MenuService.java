@@ -14,6 +14,6 @@ public interface MenuService {
 
 	public Menu removeMenu(Integer MenuId) throws MenuException;
 
-	public List<Menu> viewAllMenus() throws MenuException;
+	public List<Menu> viewAllItems() throws MenuException;
 
 }

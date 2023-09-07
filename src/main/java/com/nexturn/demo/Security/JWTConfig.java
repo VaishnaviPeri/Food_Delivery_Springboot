@@ -27,13 +27,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Service.CustomerService;
-import com.nexturn.demo.Service.MyUserDetailService;
+import com.nexturn.demo.Service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class JWTConfig {
 	@Autowired
-	private MyUserDetailService myUserDetailService;
+	private UserDetailsServiceImpl myUserDetailService;
 	
 	@SuppressWarnings("removal")
 	@Bean

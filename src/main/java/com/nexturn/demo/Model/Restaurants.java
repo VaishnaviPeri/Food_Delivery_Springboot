@@ -36,13 +36,15 @@ public class Restaurants {
 	private String restaurant_contact;
 	private String restaurant_address;
 
+	//for login
+	@OneToOne
+	private User user;
 	
 	@OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Menu> menuList = new ArrayList<>();
 
-	//for login purpose
-	@OneToOne
-	private User user;
+	
+	
 
 	public Restaurants() {
 		super();

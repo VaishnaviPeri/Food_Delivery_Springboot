@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.nexturn.demo.Model.Customer;
+import com.nexturn.demo.Model.User;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
@@ -16,6 +17,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 	
 	@Query("select a from Customer a where a.user.username=?1")
 	Customer findACustomerDetails(String username);
+	
+	Customer findByUser(User user);
 	
 //	@Query("select a.airlineCode from Customer a where a.user.username=?1")
 //	String getACustomerCode(String username);

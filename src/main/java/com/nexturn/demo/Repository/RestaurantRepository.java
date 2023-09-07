@@ -28,6 +28,8 @@ public interface RestaurantRepository extends JpaRepository<Restaurants, Integer
 	@Query("select r from Restaurants r where r.user.username=?1")
 	Restaurants findRestaurantDetails(String username);
 	
+	Restaurants findByUser(User user);
+	
 	
 
 }

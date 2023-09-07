@@ -1,6 +1,7 @@
 package com.nexturn.demo.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,19 +15,24 @@ import com.nexturn.demo.Model.User;
 import com.nexturn.demo.Repository.UserRepository;
 
 @Service
-public class MyUserDetailService implements UserDetailsService{
+public class UserDetailsServiceImpl implements UserDetailsService{
 	
 	@Autowired
 	private UserRepository userRepo;
 	
+	@Autowired
+    public UserDetailsServiceImpl(UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
 	
-//	@Override
+	
+	@Override
 	public UserDetails loadUserByUsername(String username) {
 	    
 		try {
 		User user = userRepo.findByUsername(username);
 		if(user == null) {
-			throw new UsernameNotFoundException("Invalid user credentials");
+			throw new UsernameNotFoundException("Username not found...  !");
 		}
 		SimpleGrantedAuthority sga = new SimpleGrantedAuthority(user.getRole());
 		List<SimpleGrantedAuthority> list = new ArrayList<>();
@@ -36,6 +42,7 @@ public class MyUserDetailService implements UserDetailsService{
 		throw new org.springframework.security.core.userdetails.UsernameNotFoundException("Error during user authentication",e);
 	}
 }
+}
 
 //	@Override
 //	public UserDetails loadUserByUsername(String username)
@@ -43,5 +50,24 @@ public class MyUserDetailService implements UserDetailsService{
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
+	
+	
+	
+	
 
-}
+//	    @Override
+//	    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//	        User user = userRepo.findByUsername(username);
+//	        if (user == null) {
+//	            throw new UsernameNotFoundException("User not found with username: " + username);
+//	        }
+//	        return new org.springframework.security.core.userdetails.User(
+//	            user.getUsername(),
+//	            user.getPassword(),
+//	            Collections.singletonList(new SimpleGrantedAuthority(user.getRole()))
+//	        );
+//	    }
+//	}
+
+
+

@@ -7,7 +7,7 @@ import com.nexturn.demo.Model.Customer;
 
 public interface CustomerService {
 	
-	public Customer addCustomer(Customer customer) throws CustomerException;
+//	public Customer addCustomer(Customer customer) throws CustomerException;
 	
 	public Customer removeCustomer(Integer customer_id) throws CustomerException;
 	
