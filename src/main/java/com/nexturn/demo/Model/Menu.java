@@ -3,13 +3,19 @@ package com.nexturn.demo.Model;
 
 
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,8 +34,9 @@ public class Menu {
 	//attributes for menu entity
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+//	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int menu_id;
+	@Column(name = "dish_name")
 	private String dish_name;
 	private double dish_price;
 	private int quantity;
@@ -37,8 +44,18 @@ public class Menu {
 	
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="restaurant_id")
 	private Restaurants restaurant;
+	
+	
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name="cart_id")
+	private FoodCart foodcart;
+	
+//	@ManyToOne(cascade= CascadeType.ALL)
+//    private List<Menu> menuList;
 	
 	public Menu() {
 		super();

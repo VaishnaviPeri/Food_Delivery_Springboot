@@ -44,13 +44,14 @@ public class Customer {
 	private String state;
 	private String zipcode;
 	
-	//for login purpose
-	@OneToOne(cascade=CascadeType.ALL)
-	private User user;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private FoodCart foodCart;
+	
+	//for login purpose
+		@OneToOne(cascade=CascadeType.ALL)
+		private User user;
 
 	public Customer() {
 		super();

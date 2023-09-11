@@ -26,7 +26,7 @@ public class FoodCartController {
 	@Autowired
 	FoodCartService fcservice;
 	
-	@PostMapping("/register")
+	@PostMapping("/save")
 	public ResponseEntity<FoodCart> saveCartDetails(@RequestBody FoodCart foodcart) throws FoodCartException{
 		FoodCart fcart= fcservice.saveCart(foodcart);
 		return new ResponseEntity<FoodCart>(fcart, HttpStatus.CREATED);

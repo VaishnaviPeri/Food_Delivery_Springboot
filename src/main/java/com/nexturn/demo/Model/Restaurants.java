@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -36,17 +37,17 @@ public class Restaurants {
 	private String restaurant_contact;
 	private String restaurant_address;
 
-	//for login
-	@OneToOne
-	private User user;
-	
 	@OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JsonManagedReference
 	private List<Menu> menuList = new ArrayList<>();
 
 	
-	
+	//for login
+		@OneToOne
+		private User user;
 
-	public Restaurants() {
+	
+		public Restaurants() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

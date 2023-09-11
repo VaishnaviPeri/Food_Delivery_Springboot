@@ -16,6 +16,7 @@ import com.nexturn.demo.Repository.RestaurantRepository;
 
 @Service
 public class MenuServiceImpl implements MenuService {
+	
 	@Autowired
 	MenuRepository menuRepo;
 	
@@ -25,7 +26,7 @@ public class MenuServiceImpl implements MenuService {
 
 
 
-	public Menu addMenu(Menu menu, Integer restaurant_id) throws MenuException {
+	public Menu addMenu(Integer restaurant_id, Menu menu) throws MenuException {
 		Restaurants restaurant= restRepo.findById(restaurant_id).orElseThrow(()-> new MenuException("Restaurant not Found !"));
 //		Optional<Menu> opt = menuRepo.findById(menu.getMenu_id());
 //		if(opt.isPresent()) {
@@ -57,9 +58,9 @@ public class MenuServiceImpl implements MenuService {
 
 	
 	public Menu viewMenu(Integer menu_id) throws MenuException {
-		Optional<Menu> opt = menuRepo.findById(menu_id);
-		if(opt.isPresent()) {
-			return opt.get();
+		Optional<Menu> optionalMenu = menuRepo.findById(menu_id);
+		if(optionalMenu.isPresent()) {
+			return optionalMenu.get();
 		}else {
 			throw new MenuException("No Item found with ID: "+menu_id);
 		}
@@ -87,6 +88,12 @@ public class MenuServiceImpl implements MenuService {
 			throw new MenuException("No Item exists..");
 		}
 	}
+
+
+//	@Override
+//	public List<Menu> searchByDish_name(String dish_name) {
+//		return menuRepo.findByDish_nameContainingIgnoreCase(dish_name);
+//	}
 
 		
 		

@@ -3,6 +3,7 @@ package com.nexturn.demo.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -88,8 +89,8 @@ public class RestaurantController {
 	@GetMapping("/view/{restaurant_id}")
 	public ResponseEntity<Restaurants> getByResturantId(@PathVariable  Integer restaurant_id ) throws RestaurantException{
     			Restaurants restaurant =rservice.viewRestaurant(restaurant_id);	
-    			return new ResponseEntity<Restaurants>(restaurant ,HttpStatus.OK);   	
-  	
+//    			return new ResponseEntity<>(restaurant, HttpStatus.OK);
+    			  return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(restaurant);	
 	}
 	
 	@GetMapping("/viewbyname/{restaurant_name}")

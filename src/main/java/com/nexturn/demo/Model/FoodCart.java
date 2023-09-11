@@ -3,9 +3,11 @@ package com.nexturn.demo.Model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,20 +29,20 @@ import lombok.ToString;
 
 public class FoodCart {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+//	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int cart_id;
-	
-
-    @OneToOne(cascade=CascadeType.ALL)
-//    JsonIgnore
-    private Bill bill;
 	
     @OneToOne(cascade= CascadeType.ALL)
     @JsonIgnore
     private Customer customer;
     
-    @OneToMany(cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "foodcart",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Menu> menuList;
+    
+ //   @OneToOne(cascade=CascadeType.ALL)
+//  JsonIgnore
+//  private Bill bill;
     
     
 	public FoodCart() {
