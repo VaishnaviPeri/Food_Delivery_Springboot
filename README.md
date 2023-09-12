@@ -6,30 +6,32 @@ These ordered food can be added to the food cart then checkout and get the order
 
 ## Backend Tools 
 
-Programming Language- Java
+Programming Language-> Java
 
-Framework - SpringBoot
+Framework-> SpringBoot
 
-DataBase- MYSQL
+DataBase-> MYSQL
 
-Application to run on- Spring Tool Suite(STS)
+Application to run on-> Spring Tool Suite(STS)
 
 To test the results or the flow of the data PostMan is used.
 
 ## Front End
-FrameWork- React js
+FrameWork-> React js
 
-Scripting langugae- Java Script
+Scripting langugae-> Java Script
 
-Application tool- Vs Code
+Application tool-> Vs Code
 
 ## In the command line promt
 
-To create a react vite app- npm create vite <app-name> 
+To create a react vite app-> npm create vite <app-name> 
 
-change directory- cd <app-name>
+change directory-> cd <app-name>
 
 npm install
 
-To run in the terminal npm run dev.
+to open vs code -> code .
+
+To run the app in the Vs Code terminal-> npm run dev.
 
