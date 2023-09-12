@@ -27,7 +27,7 @@ Application tool-> Vs Code
 
 To create a react vite app-> npm create vite <app-name> 
 
-change directory-> cd <app-name>
+change directory-> cd   <app-name>
 
 npm install
 
