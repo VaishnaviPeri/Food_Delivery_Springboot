@@ -45,81 +45,83 @@ public class Menu {
 	
 	@ManyToOne
 	@JsonBackReference
+	@JoinColumn(name="cart_id")
+	private FoodCart foodcart;
+	
+	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="restaurant_id")
 	private Restaurants restaurant;
 	
 	
-	@ManyToOne
-	@JsonBackReference
-	@JoinColumn(name="cart_id")
-	private FoodCart foodcart;
+	
 	
 //	@ManyToOne(cascade= CascadeType.ALL)
 //    private List<Menu> menuList;
 	
-	public Menu() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Menu(int menu_id, String dish_name, double dish_price, int quantity, String category, Restaurants restaurant) {
-		super();
-		this.menu_id = menu_id;
-		this.dish_name = dish_name;
-		this.dish_price = dish_price;
-		this.quantity=quantity;
-		this.category = category;
-		this.restaurant = restaurant;
-	}
-
-	public int getMenu_id() {
-		return menu_id;
-	}
-
-	public void setMenu_id(int menu_id) {
-		this.menu_id = menu_id;
-	}
-
-	public String getDish_name() {
-		return dish_name;
-	}
-
-	public void setDish_name(String dish_name) {
-		this.dish_name = dish_name;
-	}
-
-	public double getDish_price() {
-		return dish_price;
-	}
-
-	public void setDish_price(double dish_price) {
-		this.dish_price = dish_price;
-	}
-	
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public Restaurants getRestaurant() {
-		return restaurant;
-	}
-
-	public void setRestaurant(Restaurants restaurant) {
-		this.restaurant = restaurant;
-	}
+//	public Menu() {
+//		super();
+//		// TODO Auto-generated constructor stub
+//	}
+//
+//	public Menu(int menu_id, String dish_name, double dish_price, int quantity, String category, Restaurants restaurant) {
+//		super();
+//		this.menu_id = menu_id;
+//		this.dish_name = dish_name;
+//		this.dish_price = dish_price;
+//		this.quantity=quantity;
+//		this.category = category;
+//		this.restaurant = restaurant;
+//	}
+//
+//	public int getMenu_id() {
+//		return menu_id;
+//	}
+//
+//	public void setMenu_id(int menu_id) {
+//		this.menu_id = menu_id;
+//	}
+//
+//	public String getDish_name() {
+//		return dish_name;
+//	}
+//
+//	public void setDish_name(String dish_name) {
+//		this.dish_name = dish_name;
+//	}
+//
+//	public double getDish_price() {
+//		return dish_price;
+//	}
+//
+//	public void setDish_price(double dish_price) {
+//		this.dish_price = dish_price;
+//	}
+//	
+//
+//	public int getQuantity() {
+//		return quantity;
+//	}
+//
+//	public void setQuantity(int quantity) {
+//		this.quantity = quantity;
+//	}
+//
+//	public String getCategory() {
+//		return category;
+//	}
+//
+//	public void setCategory(String category) {
+//		this.category = category;
+//	}
+//
+//	public Restaurants getRestaurant() {
+//		return restaurant;
+//	}
+//
+//	public void setRestaurant(Restaurants restaurant) {
+//		this.restaurant = restaurant;
+//	}
 
 	
 	

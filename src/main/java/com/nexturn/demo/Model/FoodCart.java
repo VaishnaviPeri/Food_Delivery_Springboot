@@ -45,47 +45,47 @@ public class FoodCart {
 //  private Bill bill;
     
     
-	public FoodCart() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public FoodCart(int cart_id, Customer customer, List<Menu> menuList) {
-		super();
-		this.cart_id = cart_id;
-		this.customer = customer;
-		this.menuList = menuList;
-	}
-
-	public int getCart_id() {
-		return cart_id;
-	}
-
-	public void setCart_id(int cart_id) {
-		this.cart_id = cart_id;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public List<Menu> getMenuList() {
-		return menuList;
-	}
-
-	public void setMenuList(List<Menu> menuList) {
-		this.menuList = menuList;
-	}
-
-	@Override
-	public String toString() {
-		return "FoodCart [cart_id=" + cart_id + ", customer=" + customer + ", menuList=" + menuList + "]";
-	}
-    
+//	public FoodCart() {
+//		super();
+//		// TODO Auto-generated constructor stub
+//	}
+//
+//	public FoodCart(int cart_id, Customer customer, List<Menu> menuList) {
+//		super();
+//		this.cart_id = cart_id;
+//		this.customer = customer;
+//		this.menuList = menuList;
+//	}
+//
+//	public int getCart_id() {
+//		return cart_id;
+//	}
+//
+//	public void setCart_id(int cart_id) {
+//		this.cart_id = cart_id;
+//	}
+//
+//	public Customer getCustomer() {
+//		return customer;
+//	}
+//
+//	public void setCustomer(Customer customer) {
+//		this.customer = customer;
+//	}
+//
+//	public List<Menu> getMenuList() {
+//		return menuList;
+//	}
+//
+//	public void setMenuList(List<Menu> menuList) {
+//		this.menuList = menuList;
+//	}
+//
+//	@Override
+//	public String toString() {
+//		return "FoodCart [cart_id=" + cart_id + ", customer=" + customer + ", menuList=" + menuList + "]";
+//	}
+//    
     
     
     

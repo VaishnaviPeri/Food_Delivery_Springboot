@@ -2,6 +2,7 @@ package com.nexturn.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,11 +27,14 @@ public class FoodCartController {
 	@Autowired
 	FoodCartService fcservice;
 	
-	@PostMapping("/save")
+//	@PostMapping(value="/save",consumes)
+	@PostMapping(path = "save", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<FoodCart> saveCartDetails(@RequestBody FoodCart foodcart) throws FoodCartException{
 		FoodCart fcart= fcservice.saveCart(foodcart);
 		return new ResponseEntity<FoodCart>(fcart, HttpStatus.CREATED);
 	}
+	
+	
 	
 	@PutMapping("/update/{cart_id}/{menu_id}")
 	public ResponseEntity<FoodCart> addItemToCart(@PathVariable int cart_id, @PathVariable int menu_id) throws FoodCartException, MenuException{

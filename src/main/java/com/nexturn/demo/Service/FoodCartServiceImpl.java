@@ -19,6 +19,7 @@ public class FoodCartServiceImpl implements FoodCartService{
 	
 	@Autowired
 	FoodCartRepository fcRepo;
+	@Autowired
 	MenuRepository menuRepo;
 
 	@Override
