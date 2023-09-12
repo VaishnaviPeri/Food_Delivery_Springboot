@@ -23,7 +23,8 @@ Scripting langugae- Java Script
 
 Application tool- Vs Code
 
-#In the command line promt
+##In the command line promt
+
 to create a react vite app- npm create vite <app-name> 
 
 change directory- cd <app-name>
