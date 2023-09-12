@@ -25,9 +25,9 @@ Application tool-> Vs Code
 
 ## In the command line promt
 
-To create a react vite app-> npm create vite <app-name> 
+To create a react vite app-> npm create vite [app-name]
 
-change directory-> cd   <app-name>
+change directory-> cd [app-name]
 
 npm install
 
