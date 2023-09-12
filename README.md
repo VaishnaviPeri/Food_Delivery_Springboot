@@ -16,16 +16,16 @@ Application to run on- Spring Tool Suite(STS)
 
 To test the results or the flow of the data PostMan is used.
 
-##Front End
+## Front End
 FrameWork- React js
 
 Scripting langugae- Java Script
 
 Application tool- Vs Code
 
-##In the command line promt
+## In the command line promt
 
-to create a react vite app- npm create vite <app-name> 
+To create a react vite app- npm create vite <app-name> 
 
 change directory- cd <app-name>
 
