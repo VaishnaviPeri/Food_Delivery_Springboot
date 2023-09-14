@@ -26,22 +26,26 @@ public class FoodCartServiceImpl implements FoodCartService{
 	@Autowired
 	CustomerRepository custRepo;
 	
+	
+	private Menu menu;
+	
 
 	@Override
-	public List<FoodCart> saveCart(List<FoodCart> cart) throws FoodCartException {
-		cart.forEach(cart1 ->{
-//			Optional<FoodCart> opt = fcRepo.findById(cart1.getCart_id());
+	public List<FoodCart> saveCart(List<FoodCart> foodcart) throws FoodCartException {
+		    for(FoodCart cart1: foodcart) {
+//			Optional<FoodCart> opt = fcRepo.findById(cart1.getCart_id());		
 			Optional<Customer> custOpt= custRepo.findById(cart1.getCustomer_id());
-			Optional<Menu> menuOpt= menuRepo.findById(cart1.getMenu_id());			
-			if(custOpt.isPresent() && menuOpt.isPresent()) {
-				 fcRepo.save(cart1);
-//				throw new FoodCartException("Cart already exists..");
-			}else {
-				 System.out.println("jhsdhgshdfg");
-		}
-			
-		});
-		return null;
+			Optional<Menu> menuOpt= menuRepo.findById(cart1.getMenu().getMenu_id());			
+			if(custOpt.isEmpty() || menuOpt.isEmpty()) {
+				throw new FoodCartException("Customer or menu not found for cart entry: " + cart1.getCart_id());
+			}
+//			foodcart.setMenu(menu);
+			 Menu menu = menuOpt.get();
+		     cart1.setMenu(menu);
+			fcRepo.save(cart1);
+		    }
+	
+		return foodcart;
 		}
 		
 //		Optional<FoodCart> opt = fcRepo.findById(cart.getCart_id());
@@ -80,28 +84,48 @@ public class FoodCartServiceImpl implements FoodCartService{
 //	}
 
 	@Override
-	public FoodCart clearCart(Integer cartId) throws FoodCartException {
-		Optional<FoodCart> opt = fcRepo.findById(cartId);
+	public FoodCart clearCart(Integer cart_id) throws FoodCartException {
+		Optional<FoodCart> opt = fcRepo.findById(cart_id);
 		if(opt.isPresent()) {
-			FoodCart cart = opt.get();
-			fcRepo.delete(cart);
-			return cart;
+			FoodCart foodcart = opt.get();
+			fcRepo.delete(foodcart);
+//			return cart;
 		}else {
-			throw new FoodCartException("No Cart found with ID: "+cartId);
+			throw new FoodCartException("No Cart found with ID: "+cart_id);
 		}
-	}
-
-	@Override
-	public FoodCart viewCart(Integer cartId) throws FoodCartException {
-		Optional<FoodCart> opt = fcRepo.findById(cartId);
-		if(opt.isPresent()) {
-			FoodCart cart = opt.get();
-			return cart;
-		}else {
-			throw new FoodCartException("No Cart found with ID: "+cartId);
-		}
+		return null;
 	}
 
 	
+//	@Override
+//	public FoodCart viewCart(Integer cart_id) throws FoodCartException {
+//		Optional<FoodCart> opt = fcRepo.findByCart_id(cart_id);
+//		if(opt.isPresent()) {
+//			FoodCart foodcart = opt.get();
+//			return foodcart;
+//		}else {
+//			throw new FoodCartException("No Cart found with ID: "+ cart_id);
+//		}
+//	}
+	
 
-}
+	    public List<Menu> viewCart(Integer cart_id) throws FoodCartException {
+	        List<FoodCart> cartItems = fcRepo.findByCart_id(cart_id);
+
+	        if (cartItems.isEmpty()) {
+	            throw new FoodCartException("No Cart found with ID: " + cart_id);
+	        }
+
+	        List<Menu> menus = new ArrayList<>();
+	        for (FoodCart cartItem : cartItems) {
+	            menus.add(cartItem.getMenu());
+	        }
+
+	        return menus;
+	    }
+	}
+
+
+	
+
+

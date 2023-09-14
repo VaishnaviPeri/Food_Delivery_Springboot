@@ -46,7 +46,7 @@ public class MenuServiceImpl implements MenuService {
 			updatedMenu.setDish_name(menu.getDish_name());
 			updatedMenu.setCategory(menu.getCategory());
 			updatedMenu.setDish_price(menu.getDish_price());
-			updatedMenu.setQuantity(menu.getQuantity());
+			
 			
 		
 			return menuRepo.save(updatedMenu);

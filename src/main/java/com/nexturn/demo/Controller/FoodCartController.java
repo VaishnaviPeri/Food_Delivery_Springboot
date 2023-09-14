@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nexturn.demo.ExceptionHandling.FoodCartException;
 import com.nexturn.demo.ExceptionHandling.MenuException;
 import com.nexturn.demo.Model.FoodCart;
+import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Service.FoodCartService;
 
 @RestController
@@ -44,11 +45,24 @@ public class FoodCartController {
 //		return new ResponseEntity<FoodCart>(fcart,HttpStatus.ACCEPTED);
 //	}
 	
+//	@GetMapping("/view/{cart_id}")
+//	public ResponseEntity<FoodCart> viewCart(@PathVariable int cart_id) throws FoodCartException{
+//		FoodCart fcart= fcservice.viewCart(cart_id);
+//		return new ResponseEntity<FoodCart>(fcart, HttpStatus.FOUND);
+//	}
+	
+	
 	@GetMapping("/view/{cart_id}")
-	public ResponseEntity<FoodCart> viewCart(@PathVariable int cart_id) throws FoodCartException{
-		FoodCart fcart= fcservice.viewCart(cart_id);
-		return new ResponseEntity<FoodCart>(fcart, HttpStatus.FOUND);
-	}
+    public ResponseEntity<List<Menu>> viewCart(@PathVariable int cart_id) {
+        try {
+            List<Menu> menus = fcservice.viewCart(cart_id);
+            return new ResponseEntity<>(menus, HttpStatus.OK);
+        } catch (FoodCartException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+	
+	
 	
 	@DeleteMapping("/remove/{cart_id}")
 	public ResponseEntity<FoodCart> removeCart(@PathVariable int cart_id) throws FoodCartException{

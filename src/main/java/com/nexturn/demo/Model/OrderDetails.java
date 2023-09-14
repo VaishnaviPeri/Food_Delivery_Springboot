@@ -28,7 +28,7 @@ public class OrderDetails {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int order_id;
-	private String order_status;
+	private boolean order_status;
 	private LocalDateTime order_date;
 	
 	
@@ -45,7 +45,7 @@ public class OrderDetails {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderDetails(int order_id, String order_status, LocalDateTime order_date, FoodCart cart, Bill bill) {
+	public OrderDetails(int order_id, boolean order_status, LocalDateTime order_date, FoodCart cart, Bill bill) {
 		super();
 		this.order_id = order_id;
 		this.order_status = order_status;
@@ -62,11 +62,11 @@ public class OrderDetails {
 		this.order_id = order_id;
 	}
 
-	public String getOrder_status() {
+	public boolean getOrder_status() {
 		return order_status;
 	}
 
-	public void setOrder_status(String order_status) {
+	public void setOrder_status(boolean order_status) {
 		this.order_status = order_status;
 	}
 

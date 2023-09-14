@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -30,18 +31,24 @@ public class FoodCart {
 	    private int id;
 	    private int cart_id;
 	    private int customer_id;
-	    private int menu_id;
+//	    private int menu_id;
+	    private int item_quantity;
+	    
+	    
 		public FoodCart() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public FoodCart(int id, int cart_id, int customer_id, int menu_id) {
+		public FoodCart(int id, int cart_id, int customer_id, int item_quantity, Menu menu) {
 			super();
 			this.id = id;
 			this.cart_id = cart_id;
 			this.customer_id = customer_id;
-			this.menu_id = menu_id;
+//			this.menu_id = menu_id;
+			this.item_quantity = item_quantity;
+			this.menu = menu;
 		}
+		
 		public int getId() {
 			return id;
 		}
@@ -60,27 +67,53 @@ public class FoodCart {
 		public void setCustomer_id(int customer_id) {
 			this.customer_id = customer_id;
 		}
-		public int getMenu_id() {
-			return menu_id;
+//		public int getMenu_id() {
+//			return menu_id;
+//		}
+//		public void setMenu_id(int menu_id) {
+//			this.menu_id = menu_id;
+//		}
+		public int getItem_quantity() {
+			return item_quantity;
 		}
-		public void setMenu_id(int menu_id) {
-			this.menu_id = menu_id;
+		public Menu getMenu() {
+			return menu;
 		}
+		public void setMenu(Menu menu) {
+			this.menu = menu;
+		}
+		public void setItem_quantity(int item_quantity) {
+			this.item_quantity = item_quantity;
+		}
+	
 	    
-//
-//	    @OneToMany(cascade = CascadeType.MERGE)
+
+	    
+
+	    
+	    
+	    
+
+	    
+	    
+	    
+	    
+	    
+	    
+	    //	    @OneToMany(cascade = CascadeType.MERGE)
 //    @JsonManagedReference("customer-cart")
 //	    @JoinColumn(name="customer_id")
 //	    private List<Customer> customer;
 //    
 //	    
-//	    @OneToOne(cascade = CascadeType.MERGE)
+
+	    @ManyToOne
 //    @JsonManagedReference("cart-menu")
-//	    @JoinColumn(name="menu_id")
+	    @JoinColumn(name="menu_id")
 //	    private List<Menu> menuList= new ArrayList<>();
-//	    private Menu menu;
+	    private Menu menu;
 
-
+//(cascade = CascadeType.MERGE)
 		
    
 //        @ManyToMany
