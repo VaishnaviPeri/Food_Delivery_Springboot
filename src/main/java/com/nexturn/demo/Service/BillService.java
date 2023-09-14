@@ -15,7 +15,7 @@ public interface BillService {
 	
 	public Bill viewBill(Integer bill_id) throws BillException;
 	
-	public double totalBillById(Integer customer_id) throws BillException, MenuException, CustomerException;
+//	public double totalBillById(Integer customer_id) throws BillException, MenuException, CustomerException;
 
 //	public Bill updateBill(Integer bill_id);
 	

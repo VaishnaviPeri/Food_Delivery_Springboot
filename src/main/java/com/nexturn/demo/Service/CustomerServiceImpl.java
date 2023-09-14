@@ -72,7 +72,7 @@ public class CustomerServiceImpl implements CustomerService {
 			updatedCustomer.setCity(customer.getCity());
 			updatedCustomer.setState(customer.getState());
 			updatedCustomer.setZipcode(customer.getZipcode());
-			updatedCustomer.setFoodCart(customer.getFoodCart());
+//			updatedCustomer.setFoodCart(customer.getFoodCart());
 		
 			return customerRepo.save(updatedCustomer);
 		}

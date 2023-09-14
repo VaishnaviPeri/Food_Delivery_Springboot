@@ -22,10 +22,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="OrderDetails")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+
 
 public class OrderDetails {
 	@Id
@@ -43,71 +40,58 @@ public class OrderDetails {
 	@JsonIgnore
 	private Bill bill;
 
-//	public OrderDetails() {
-//		super();
-//		// TODO Auto-generated constructor stub
-//	}
-//
-//	public OrderDetails(int order_id, String order_status, LocalDateTime order_date, FoodCart cart, Bill bill) {
-//		super();
-//		this.order_id = order_id;
-//		this.order_status = order_status;
-//		this.order_date = order_date;
-//		this.cart = cart;
-//		this.bill = bill;
-//	}
-//
-//	public int getOrder_id() {
-//		return order_id;
-//	}
-//
-//	public void setOrder_id(int order_id) {
-//		this.order_id = order_id;
-//	}
-//
-//	public String getOrder_status() {
-//		return order_status;
-//	}
-//
-//	public void setOrder_status(String order_status) {
-//		this.order_status = order_status;
-//	}
-//
-//	public LocalDateTime getOrder_date() {
-//		return order_date;
-//	}
-//
-//	public void setOrder_date(LocalDateTime order_date) {
-//		this.order_date = order_date;
-//	}
-//
-//	public FoodCart getCart() {
-//		return cart;
-//	}
-//
-//	public void setCart(FoodCart cart) {
-//		this.cart = cart;
-//	}
-//
-//	public Bill getBill() {
-//		return bill;
-//	}
-//
-//	public void setBill(Bill bill) {
-//		this.bill = bill;
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return "OrderDetails [order_id=" + order_id + ", order_status=" + order_status + ", order_date=" + order_date
-//				+ ", cart=" + cart + ", bill=" + bill + "]";
-//	}
-//	
-	
-	
-	
-	
-	
-	
+	public OrderDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public OrderDetails(int order_id, String order_status, LocalDateTime order_date, FoodCart cart, Bill bill) {
+		super();
+		this.order_id = order_id;
+		this.order_status = order_status;
+		this.order_date = order_date;
+		this.cart = cart;
+		this.bill = bill;
+	}
+
+	public int getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
+
+	public String getOrder_status() {
+		return order_status;
+	}
+
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
+	}
+
+	public LocalDateTime getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(LocalDateTime order_date) {
+		this.order_date = order_date;
+	}
+
+	public FoodCart getCart() {
+		return cart;
+	}
+
+	public void setCart(FoodCart cart) {
+		this.cart = cart;
+	}
+
+	public Bill getBill() {
+		return bill;
+	}
+
+	public void setBill(Bill bill) {
+		this.bill = bill;
+	}
 
 }

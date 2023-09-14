@@ -81,20 +81,20 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 		}
 	}
 
-	public List<Menu> viewAllOdersByCustomer(Integer customer_id) throws CustomerException, OrderDetailsException {
-		Optional<Customer> cOpt =customerRepo.findById(customer_id);
-		if(cOpt.isPresent()) {
-			Customer customer = cOpt.get();
-			 List<Menu> itemList = customer.getFoodCart().getMenuList();
-			 if(itemList.size() > 0) {
-				 return itemList;
-			 }else {
-				 throw new OrderDetailsException("No Orders found..");
-			 }
-		}else {
-			throw new CustomerException("No Customer found with ID: "+customer_id);
-		}
-	}
+//	public List<Menu> viewAllOdersByCustomer(Integer customer_id) throws CustomerException, OrderDetailsException {
+//		Optional<Customer> cOpt =customerRepo.findById(customer_id);
+//		if(cOpt.isPresent()) {
+//			Customer customer = cOpt.get();
+//			 Menu itemList = customer.getFoodCart().getMenu();
+//			 if(itemList.size() > 0) {
+//				 return itemList;
+//			 }else {
+//				 throw new OrderDetailsException("No Orders found..");
+//			 }
+//		}else {
+//			throw new CustomerException("No Customer found with ID: "+customer_id);
+//		}
+//	}
 
 
 //	public OrderDetails updateOrder(OrderDetails orderDetails) throws OrderDetailsException {

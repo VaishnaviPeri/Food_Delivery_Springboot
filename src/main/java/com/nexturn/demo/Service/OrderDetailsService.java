@@ -17,7 +17,7 @@ public interface OrderDetailsService {
 	
 	public OrderDetails viewOrder(Integer order_id) throws OrderDetailsException;
 	
-	public List<Menu> viewAllOdersByCustomer(Integer customer_id) throws CustomerException, OrderDetailsException;
-	
+//	public List<Menu> viewAllOdersByCustomer(Integer customer_id) throws CustomerException, OrderDetailsException;
+//	
 
 }

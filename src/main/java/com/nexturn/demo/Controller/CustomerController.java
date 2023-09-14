@@ -79,7 +79,7 @@ public class CustomerController {
 		customer.setCity(customerDto.getCity());
 		customer.setState(customerDto.getState());
 		customer.setZipcode(customerDto.getZipcode());
-		customer.setFoodCart(customer.getFoodCart());
+//		customer.setFoodCart(customer.getFoodCart());
 		customer.setUser(user);
 
 		cRepo.save(customer);

@@ -1,5 +1,7 @@
 package com.nexturn.demo.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,18 +31,18 @@ public class FoodCartController {
 	
 //	@PostMapping(value="/save",consumes)
 	@PostMapping(path = "save", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<FoodCart> saveCartDetails(@RequestBody FoodCart foodcart) throws FoodCartException{
-		FoodCart fcart= fcservice.saveCart(foodcart);
-		return new ResponseEntity<FoodCart>(fcart, HttpStatus.CREATED);
+	public ResponseEntity<List<FoodCart>> saveCartDetails(@RequestBody List<FoodCart> foodcart) throws FoodCartException{
+		List<FoodCart> fcart= fcservice.saveCart(foodcart);
+		return new ResponseEntity<List<FoodCart>>(fcart, HttpStatus.CREATED);
 	}
 	
 	
 	
-	@PutMapping("/update/{cart_id}/{menu_id}")
-	public ResponseEntity<FoodCart> addItemToCart(@PathVariable int cart_id, @PathVariable int menu_id) throws FoodCartException, MenuException{
-		FoodCart fcart= fcservice.addItem(cart_id, menu_id);
-		return new ResponseEntity<FoodCart>(fcart,HttpStatus.ACCEPTED);
-	}
+//	@PutMapping("/update/{cart_id}/{menu_id}")
+//	public ResponseEntity<FoodCart> addItemToCart(@PathVariable int cart_id, @PathVariable int menu_id) throws FoodCartException, MenuException{
+//		FoodCart fcart= fcservice.addItem(cart_id, menu_id);
+//		return new ResponseEntity<FoodCart>(fcart,HttpStatus.ACCEPTED);
+//	}
 	
 	@GetMapping("/view/{cart_id}")
 	public ResponseEntity<FoodCart> viewCart(@PathVariable int cart_id) throws FoodCartException{

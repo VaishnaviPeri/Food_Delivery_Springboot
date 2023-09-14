@@ -56,12 +56,12 @@ public class OrderDetailsController {
      	
      }
 	 
-	 
-	 @GetMapping("/viewbycustomer/{customer_id}")
-     public ResponseEntity<List<Menu>> viewAllOrders(@PathVariable Integer customer_id) throws OrderDetailsException, CustomerException{
-     		return  new ResponseEntity<List<Menu>>(odservice.viewAllOdersByCustomer(customer_id), HttpStatus.FOUND);
-     	
-     }
+//	 
+//	 @GetMapping("/viewbycustomer/{customer_id}")
+//     public ResponseEntity<List<Menu>> viewAllOrders(@PathVariable Integer customer_id) throws OrderDetailsException, CustomerException{
+//     		return  new ResponseEntity<List<Menu>>(odservice.viewAllOdersByCustomer(customer_id), HttpStatus.FOUND);
+//     	
+//     }
 
 
 

@@ -72,29 +72,29 @@ public class BillServiceImpl implements BillService {
 		}
 	}
 
-	@Override
-	public double totalBillById(Integer customer_id) throws MenuException, CustomerException {
-		
-		Optional<Customer> cOpt = customerRepo.findById(customer_id);
-		if(cOpt.isPresent()) {
-			Customer customer = cOpt.get();
-			List<Menu> items = customer.getFoodCart().getMenuList();	
-			if(items.size() > 0) {			
-				Double total = 0.0;
-				for(Menu item : items) {
-					total += (item.getDish_price()*item.getQuantity()); 
-				}
-				
-				return total;
-				
-			}else {
-				throw new MenuException("No order items found for "+ customer.getCustomer_name());
-			}
-			
-		}else {
-			throw new CustomerException("No Customer found with ID: "+ customer_id);
-		}
-	}
+//	@Override
+//	public double totalBillById(Integer customer_id) throws MenuException, CustomerException {
+//		
+//		Optional<Customer> cOpt = customerRepo.findById(customer_id);
+//		if(cOpt.isPresent()) {
+//			Customer customer = cOpt.get();
+//			List<Menu> items = customer.getFoodCart().getMenuList();	
+//			if(items.size() > 0) {			
+//				Double total = 0.0;
+//				for(Menu item : items) {
+//					total += (item.getDish_price()*item.getQuantity()); 
+//				}
+//				
+//				return total;
+//				
+//			}else {
+//				throw new MenuException("No order items found for "+ customer.getCustomer_name());
+//			}
+//			
+//		}else {
+//			throw new CustomerException("No Customer found with ID: "+ customer_id);
+//		}
+//	}
 	
 	
 //	updatedBill.setBill_date(bill.getBill_date());

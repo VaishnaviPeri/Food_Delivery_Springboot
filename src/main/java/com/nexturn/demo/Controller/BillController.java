@@ -54,11 +54,11 @@ public class BillController {
 		return new ResponseEntity<Bill>(mybill, HttpStatus.FOUND);
 	}
 	
-	@GetMapping("/totalBill/{customer_id}")
-	public ResponseEntity<Double> totalBillByCustomerId(@PathVariable int customer_id) throws BillException, MenuException, CustomerException{
-	     double total = billservice.totalBillById(customer_id);
-		return new ResponseEntity<>(total,HttpStatus.OK);
-	}
+//	@GetMapping("/totalBill/{customer_id}")
+//	public ResponseEntity<Double> totalBillByCustomerId(@PathVariable int customer_id) throws BillException, MenuException, CustomerException{
+//	     double total = billservice.totalBillById(customer_id);
+//		return new ResponseEntity<>(total,HttpStatus.OK);
+//	}
 
 
 }
