@@ -45,23 +45,24 @@ public class FoodCartController {
 //		return new ResponseEntity<FoodCart>(fcart,HttpStatus.ACCEPTED);
 //	}
 	
-//	@GetMapping("/view/{cart_id}")
-//	public ResponseEntity<FoodCart> viewCart(@PathVariable int cart_id) throws FoodCartException{
-//		FoodCart fcart= fcservice.viewCart(cart_id);
-//		return new ResponseEntity<FoodCart>(fcart, HttpStatus.FOUND);
-//	}
-	
-	
 	@GetMapping("/view/{cart_id}")
-    public ResponseEntity<List<Menu>> viewCart(@PathVariable int cart_id) {
-        try {
-            List<Menu> menus = fcservice.viewCart(cart_id);
-            return new ResponseEntity<>(menus, HttpStatus.OK);
-        } catch (FoodCartException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+	public ResponseEntity<List<FoodCart>> viewCart(@PathVariable int cart_id) throws FoodCartException{
+		List<FoodCart> fcart= fcservice.viewCart(cart_id);
+		return new ResponseEntity<>(fcart, HttpStatus.FOUND);
+		
+	}
 	
+	
+//	@GetMapping("/view/{cart_id}")
+//    public ResponseEntity<List<Menu>> viewCart(@PathVariable int cart_id) {
+//        try {
+//            List<Menu> menus = fcservice.viewCart(cart_id);
+//            return new ResponseEntity<>(menus, HttpStatus.OK);
+//        } catch (FoodCartException e) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+//	
 	
 	
 	@DeleteMapping("/remove/{cart_id}")

@@ -1,8 +1,9 @@
 package com.nexturn.demo.Service;
 
 
+import com.nexturn.demo.ExceptionHandling.MenuException;
 import com.nexturn.demo.ExceptionHandling.RestaurantException;
-
+import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Model.Restaurants;
 
 public interface RestaurantService {
@@ -17,7 +18,10 @@ public interface RestaurantService {
 	
 	public Restaurants viewRestaurantByName(String restaurant_name) throws RestaurantException;
 	
-//	public Restaurants validateRestaurant(String manager_name, String manager_password) throws RestaurantException;
+//	public Menu deleteByDishName(String dish_name, Integer restaurant_id) throws MenuException;
+
+	
+	//	public Restaurants validateRestaurant(String manager_name, String manager_password) throws RestaurantException;
 	
 
 }

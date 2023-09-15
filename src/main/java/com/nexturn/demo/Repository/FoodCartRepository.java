@@ -17,6 +17,6 @@ public interface FoodCartRepository extends JpaRepository<FoodCart, Integer>{
 //	Optional<FoodCart> findByCart_id(Integer cart_id);
 	
 	@Query("SELECT fc FROM FoodCart fc  WHERE fc.cart_id = ?1")
-	List<FoodCart> findByCart_id(Integer cart_id) throws FoodCartException;
+	List<FoodCart> findByCartId(Integer cart_id) throws FoodCartException;
 
 }

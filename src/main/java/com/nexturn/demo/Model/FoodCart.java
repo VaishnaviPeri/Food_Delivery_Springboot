@@ -30,7 +30,7 @@ public class FoodCart {
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    private int id;
 	    private int cart_id;
-	    private int customer_id;
+	 //   private int customer_id;
 //	    private int menu_id;
 	    private int item_quantity;
 	    
@@ -39,14 +39,15 @@ public class FoodCart {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public FoodCart(int id, int cart_id, int customer_id, int item_quantity, Menu menu) {
+		public FoodCart(int id, int cart_id, Customer customer_id, int item_quantity,Menu menu) {
 			super();
 			this.id = id;
 			this.cart_id = cart_id;
-			this.customer_id = customer_id;
+//			this.customer_id = customer_id;
 //			this.menu_id = menu_id;
 			this.item_quantity = item_quantity;
 			this.menu = menu;
+			this.customer = customer;
 		}
 		
 		public int getId() {
@@ -61,12 +62,12 @@ public class FoodCart {
 		public void setCart_id(int cart_id) {
 			this.cart_id = cart_id;
 		}
-		public int getCustomer_id() {
-			return customer_id;
-		}
-		public void setCustomer_id(int customer_id) {
-			this.customer_id = customer_id;
-		}
+//		public int getCustomer_id() {
+//			return customer_id;
+//		}
+//		public void setCustomer_id(int customer_id) {
+//			this.customer_id = customer_id;
+//		}
 //		public int getMenu_id() {
 //			return menu_id;
 //		}
@@ -75,6 +76,12 @@ public class FoodCart {
 //		}
 		public int getItem_quantity() {
 			return item_quantity;
+		}
+		public Customer getCustomer() {
+			return customer;
+		}
+		public void setCustomer(Customer customer) {
+			this.customer = customer;
 		}
 		public Menu getMenu() {
 			return menu;
@@ -100,13 +107,13 @@ public class FoodCart {
 	    
 	    
 	    
-	    //	    @OneToMany(cascade = CascadeType.MERGE)
+	    	    @ManyToOne
 //    @JsonManagedReference("customer-cart")
-//	    @JoinColumn(name="customer_id")
-//	    private List<Customer> customer;
+	    @JoinColumn(name="customer_id")
+	    private Customer customer;
 //    
 //	    
-
+//
 	    @ManyToOne
 //    @JsonManagedReference("cart-menu")
 	    @JoinColumn(name="menu_id")

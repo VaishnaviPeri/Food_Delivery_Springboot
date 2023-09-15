@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nexturn.demo.ExceptionHandling.RestaurantException;
 import com.nexturn.demo.ExceptionHandling.UsernameNotFoundException;
 import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Model.DeliveryPartner;
@@ -86,7 +87,7 @@ public class LoginController {
 	
 		
 		@GetMapping("/get/details")
-		public Object getUserDetails(Principal principal) throws UsernameNotFoundException {
+		public Object getUserDetails(Principal principal) throws UsernameNotFoundException, RestaurantException {
 			String username = principal.getName();
 			User user = userRepo.findByUsername(username);
 			if(user == null) {

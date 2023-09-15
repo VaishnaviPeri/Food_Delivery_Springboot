@@ -34,14 +34,14 @@ public class FoodCartServiceImpl implements FoodCartService{
 	public List<FoodCart> saveCart(List<FoodCart> foodcart) throws FoodCartException {
 		    for(FoodCart cart1: foodcart) {
 //			Optional<FoodCart> opt = fcRepo.findById(cart1.getCart_id());		
-			Optional<Customer> custOpt= custRepo.findById(cart1.getCustomer_id());
+			Optional<Customer> custOpt= custRepo.findById(cart1.getCustomer().getCustomer_id());
 			Optional<Menu> menuOpt= menuRepo.findById(cart1.getMenu().getMenu_id());			
 			if(custOpt.isEmpty() || menuOpt.isEmpty()) {
 				throw new FoodCartException("Customer or menu not found for cart entry: " + cart1.getCart_id());
 			}
 //			foodcart.setMenu(menu);
-			 Menu menu = menuOpt.get();
-		     cart1.setMenu(menu);
+//			 Menu menu = menuOpt.get();
+//		     cart1.setMenu(menu);
 			fcRepo.save(cart1);
 		    }
 	
@@ -97,32 +97,32 @@ public class FoodCartServiceImpl implements FoodCartService{
 	}
 
 	
-//	@Override
-//	public FoodCart viewCart(Integer cart_id) throws FoodCartException {
-//		Optional<FoodCart> opt = fcRepo.findByCart_id(cart_id);
-//		if(opt.isPresent()) {
-//			FoodCart foodcart = opt.get();
-//			return foodcart;
-//		}else {
-//			throw new FoodCartException("No Cart found with ID: "+ cart_id);
-//		}
-//	}
+	@Override
+	public List<FoodCart> viewCart(Integer cart_id) throws FoodCartException {
+		List<FoodCart> opt = fcRepo.findByCartId(cart_id);
+		if(opt.isEmpty()) {
+			throw new FoodCartException("No Cart found with ID: "+ cart_id);
+			
+		}else {
+		    return opt;
+		}
+	}
 	
 
-	    public List<Menu> viewCart(Integer cart_id) throws FoodCartException {
-	        List<FoodCart> cartItems = fcRepo.findByCart_id(cart_id);
-
-	        if (cartItems.isEmpty()) {
-	            throw new FoodCartException("No Cart found with ID: " + cart_id);
-	        }
-
-	        List<Menu> menus = new ArrayList<>();
-	        for (FoodCart cartItem : cartItems) {
-	            menus.add(cartItem.getMenu());
-	        }
-
-	        return menus;
-	    }
+//	    public List<Menu> viewCart(Integer cart_id) throws FoodCartException {
+//	        List<FoodCart> cartItems = fcRepo.findByCart_id(cart_id);
+//
+//	        if (cartItems.isEmpty()) {
+//	            throw new FoodCartException("No Cart found with ID: " + cart_id);
+//	        }
+//
+//	        List<Menu> menus = new ArrayList<>();
+//	        for (FoodCart cartItem : cartItems) {
+//	            menus.add(cartItem.getMenu());
+//	        }
+//
+//	        return menus;
+//	    }
 	}
 
 

@@ -8,14 +8,12 @@ import com.nexturn.demo.Model.Menu;
 public interface MenuService {
 	public Menu addMenu(Integer restaurant_id, Menu menu) throws MenuException;
 
-	public Menu updateMenu(Integer menu_id, Menu menu) throws MenuException;
+	public Menu updateMenu1(Integer menu_id,Menu menu) throws MenuException;
 
 	public Menu viewMenu(Integer menu_id) throws MenuException;
 
-	public Menu removeMenu(Integer MenuId) throws MenuException;
-
 	public List<Menu> viewAllItems() throws MenuException;
 	
-//	public List<Menu> searchByDish_name(String dish_name);
+	public void deleteMenuByDishName(String dish_name) throws MenuException;
 
 }

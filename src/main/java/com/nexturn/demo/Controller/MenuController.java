@@ -21,6 +21,8 @@ import com.nexturn.demo.ExceptionHandling.MenuException;
 import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Service.MenuService;
 
+import jakarta.websocket.server.PathParam;
+
 @RestController()
 @RequestMapping("/menu")
 @CrossOrigin(origins="*")
@@ -41,9 +43,9 @@ public class MenuController {
 }
 	
 	@PutMapping("/update/{menu_id}")
-	public ResponseEntity<Menu> updateMenu(@PathVariable Integer menu_id, @RequestBody Menu men) throws MenuException{
-		Menu menu= mservice.updateMenu(menu_id,men);
-		return new ResponseEntity<Menu>(menu, HttpStatus.ACCEPTED);
+	public ResponseEntity<Menu> updateMenu(@PathVariable Integer menu_id,@RequestBody Menu menu) throws MenuException{
+		Menu menue= mservice.updateMenu1(menu_id, menu);
+		return new ResponseEntity<Menu>(menue, HttpStatus.ACCEPTED);
 				
 	}
 	
@@ -71,31 +73,40 @@ public class MenuController {
 //	}
 	
 
-	@DeleteMapping("/remove/{menu_Id}")
-	public ResponseEntity<Menu> removeItem(@PathVariable Integer menu_id) throws MenuException{
-		Menu removedItem = mservice.removeMenu(menu_id);
-		return new ResponseEntity<Menu>(removedItem, HttpStatus.OK);
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	    @DeleteMapping("/delete/{dish_name}")
+	    public ResponseEntity<String> deleteMenuByDishName(@PathVariable String dish_name) {
+	        try {
+	            mservice.deleteMenuByDishName(dish_name);
+	            return new ResponseEntity<>("Menu deleted successfully.", HttpStatus.OK);
+	        } catch (Exception e) {
+	            return new ResponseEntity<>("Failed to delete menu: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	        }
+	    }
+	
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

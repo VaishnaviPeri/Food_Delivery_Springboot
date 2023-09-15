@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.nexturn.demo.ExceptionHandling.MenuException;
 import com.nexturn.demo.ExceptionHandling.RestaurantException;
+import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Model.Restaurants;
 import com.nexturn.demo.Model.User;
 import com.nexturn.demo.Repository.RestaurantRepository;
@@ -89,8 +92,8 @@ public class RestaurantController {
 	@GetMapping("/view/{restaurant_id}")
 	public ResponseEntity<Restaurants> getByResturantId(@PathVariable  Integer restaurant_id ) throws RestaurantException{
     			Restaurants restaurant =rservice.viewRestaurant(restaurant_id);	
-//    			return new ResponseEntity<>(restaurant, HttpStatus.OK);
-    			  return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(restaurant);	
+    			return new ResponseEntity<>(restaurant, HttpStatus.OK);
+//    			  return ResponseEntity.ok().body(restaurant);	
 	}
 	
 	@GetMapping("/viewbyname/{restaurant_name}")
@@ -110,7 +113,28 @@ public class RestaurantController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-//	@PostMapping("/register")
+
+//	@DeleteMapping("/removeMenu/{restaurant_id}/{dish_name}")
+//	public ResponseEntity<Menu> deleteMenuByDishName(@PathVariable Integer restaurant_id, @PathVariable String dish_name) throws MenuException{
+//		Menu menu = rservice.deleteByDishName(dish_name, restaurant_id);
+//		return new ResponseEntity<>(menu, HttpStatus.OK);
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//	@PostMapping("/register")
 //	public ResponseEntity<String> restaurantRegistration(@RequestBody Restaurants restaurant) throws RestaurantException{
 //		try {
 //			rservice.addRestaurant(restaurant);
@@ -120,18 +144,7 @@ public class RestaurantController {
 //		}
 //	}
 	
-//	@PostMapping("/login")
-//	public ResponseEntity<String> managerLogin(@RequestBody Restaurants loginCredentials){
-//		try {
-//			Restaurants restaurant= rservice.validateRestaurant(loginCredentials.getManager_name(),loginCredentials.getManager_password());
-//		    String token= jwtConfig.generateToken(restaurant.getManager_name());
-//		    return new ResponseEntity<>(token, HttpStatus.OK);
-//		}catch(RestaurantException ce){
-//			return new ResponseEntity<>(ce.getMessage(),HttpStatus.UNAUTHORIZED);
-//			
-//		}
-//	}
-	
+
 	
 	
 }

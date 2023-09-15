@@ -15,7 +15,7 @@ public interface FoodCartService {
 	
 	public FoodCart clearCart(Integer cart_id)throws FoodCartException;
 	
-	public List<Menu> viewCart(Integer cart_id)throws FoodCartException;
+	public List<FoodCart> viewCart(Integer cart_id)throws FoodCartException;
 
 
 }

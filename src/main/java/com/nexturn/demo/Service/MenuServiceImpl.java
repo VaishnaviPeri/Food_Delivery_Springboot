@@ -14,6 +14,8 @@ import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Repository.MenuRepository;
 import com.nexturn.demo.Repository.RestaurantRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class MenuServiceImpl implements MenuService {
 	
@@ -39,7 +41,7 @@ public class MenuServiceImpl implements MenuService {
 	}
 	
 	
-	public Menu updateMenu(Integer menu_id, Menu menu) throws MenuException {
+	public Menu updateMenu1(Integer menu_id, Menu menu) throws MenuException {
 		Optional<Menu> menue= menuRepo.findById(menu_id);
 		if(menue.isPresent()) {
 			Menu updatedMenu = menue.get();
@@ -47,8 +49,6 @@ public class MenuServiceImpl implements MenuService {
 			updatedMenu.setCategory(menu.getCategory());
 			updatedMenu.setDish_price(menu.getDish_price());
 			
-			
-		
 			return menuRepo.save(updatedMenu);
 		}
 		else {
@@ -67,16 +67,16 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 
-	public Menu removeMenu(Integer menu_id) throws MenuException {
-		Optional<Menu> opt = menuRepo.findById(menu_id);
-		if(opt.isPresent()) {
-			Menu item = opt.get();
-			menuRepo.delete(item);
-			return item;
-		}else {
-			throw new MenuException("No Item found with ID: "+menu_id);
-		}
-	}
+//	public Menu removeMenu(Integer menu_id) throws MenuException {
+//		Optional<Menu> opt = menuRepo.findById(menu_id);
+//		if(opt.isPresent()) {
+//			Menu item = opt.get();
+//			menuRepo.delete(item);
+//			return item;
+//		}else {
+//			throw new MenuException("No Item found with ID: "+menu_id);
+//		}
+//	}
 
 	
 	
@@ -89,18 +89,14 @@ public class MenuServiceImpl implements MenuService {
 		}
 	}
 
-
-//	@Override
-//	public List<Menu> searchByDish_name(String dish_name) {
-//		return menuRepo.findByDish_nameContainingIgnoreCase(dish_name);
-//	}
-
-		
-		
 	
+	@Transactional
+	public void deleteMenuByDishName(String dish_name) throws MenuException{
+		menuRepo.deleteByDishName(dish_name);
+	}
+
 	
-		
-//	public Menu updateMenu(Menu menu) throws MenuException {
+//	public Menu updateMenu(Integer menu_id,Menu menu) throws MenuException {
 //			Optional<Menu> opt = menuRepo.findById(menu.getMenu_id());
 //			if(opt.isPresent()) {
 //				return menuRepo.save(menu);
@@ -108,6 +104,7 @@ public class MenuServiceImpl implements MenuService {
 //				throw new MenuException("No such Item found..");
 //			}
 //		}
-
 }
+
+
 

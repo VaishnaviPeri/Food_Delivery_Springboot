@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nexturn.demo.ExceptionHandling.CustomerException;
+import com.nexturn.demo.ExceptionHandling.MenuException;
 import com.nexturn.demo.ExceptionHandling.RestaurantException;
 import com.nexturn.demo.Model.Bill;
 import com.nexturn.demo.Model.Customer;
+import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Model.Restaurants;
 import com.nexturn.demo.Model.User;
+import com.nexturn.demo.Repository.MenuRepository;
 import com.nexturn.demo.Repository.RestaurantRepository;
 import com.nexturn.demo.Repository.UserRepository;
 
@@ -22,6 +25,9 @@ public class RestaurantServiceImpl implements RestaurantService{
 	
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	MenuRepository menuRepo;
 	
    
      Restaurants restaurant;
@@ -119,6 +125,20 @@ public class RestaurantServiceImpl implements RestaurantService{
 		}
 		 
 	}
+
+
+	
+//	public Menu deleteByDishName(String dish_name, Integer restaurant_id) throws MenuException {
+//		Menu menu= menuRepo.findByDishNameAndRestaurantId(dish_name, restaurant_id);
+//		Optional<Restaurants> restaurant = rRepo.findById(restaurant_id);
+//		if(menu!=null && restaurant.isPresent()) {
+//			menuRepo.delete(menu);
+//			return menu;
+//		}else {
+//			throw new MenuException("Dish does not exist for the specified restaurant");
+//		}
+//		
+	}
 	
 	
 	
@@ -149,4 +169,4 @@ public class RestaurantServiceImpl implements RestaurantService{
 //		 }
 //	 }
 
-}
+
