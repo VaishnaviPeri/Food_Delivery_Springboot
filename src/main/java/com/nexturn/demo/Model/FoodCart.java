@@ -30,16 +30,23 @@ public class FoodCart {
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    private int id;
 	    private int cart_id;
-	 //   private int customer_id;
-//	    private int menu_id;
+
 	    private int item_quantity;
+	    
+	    @ManyToOne
+	    @JoinColumn(name="customer_id")
+	    private Customer customer;
+	  
+	    @ManyToOne   
+	    @JoinColumn(name="menu_id")
+	    private Menu menu;
 	    
 	    
 		public FoodCart() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public FoodCart(int id, int cart_id, Customer customer_id, int item_quantity,Menu menu) {
+		public FoodCart(int id, int cart_id, Customer customer_id, int item_quantity, Menu menu) {
 			super();
 			this.id = id;
 			this.cart_id = cart_id;
@@ -107,18 +114,7 @@ public class FoodCart {
 	    
 	    
 	    
-	    	    @ManyToOne
-//    @JsonManagedReference("customer-cart")
-	    @JoinColumn(name="customer_id")
-	    private Customer customer;
-//    
-//	    
-//
-	    @ManyToOne
-//    @JsonManagedReference("cart-menu")
-	    @JoinColumn(name="menu_id")
-//	    private List<Menu> menuList= new ArrayList<>();
-	    private Menu menu;
+	   
 
 //(cascade = CascadeType.MERGE)
 		

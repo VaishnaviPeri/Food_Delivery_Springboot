@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -20,7 +22,7 @@ import lombok.ToString;
 
 public class Bill {
 	@Id
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bill_id;
 	private LocalDateTime bill_date;
 	private double bill_total;
@@ -30,23 +32,18 @@ public class Bill {
 	@JoinColumn(name="cart_id")
 	private FoodCart foodCart;
 
-//	public Integer getBill_id() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-	
-	
 	public Bill() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Bill(int bill_id, LocalDateTime bill_date, double bill_total, int quantity) {
+	public Bill(int bill_id, LocalDateTime bill_date, double bill_total, int quantity, FoodCart foodCart) {
 		super();
 		this.bill_id = bill_id;
 		this.bill_date = bill_date;
 		this.bill_total = bill_total;
 		this.quantity = quantity;
+		this.foodCart = foodCart;
 	}
 
 	public int getBill_id() {
@@ -81,6 +78,18 @@ public class Bill {
 		this.quantity = quantity;
 	}
 
+	public FoodCart getFoodCart() {
+		return foodCart;
+	}
+
+	public void setFoodCart(FoodCart foodCart) {
+		this.foodCart = foodCart;
+	}
+
+
+	
+	
+	
 	
 	
 	

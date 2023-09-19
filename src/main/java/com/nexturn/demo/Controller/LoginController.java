@@ -58,7 +58,7 @@ public class LoginController {
 	
 	
 	
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public Object userLogin(Principal principal) throws UsernameNotFoundException{ //The principal is the currently logged in use
 		System.out.println(principal);
 	     String username = principal.getName();

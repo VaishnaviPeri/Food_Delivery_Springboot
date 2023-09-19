@@ -7,13 +7,13 @@ import com.nexturn.demo.Model.Bill;
 
 public interface BillService {
 	
-	public Bill addBill(Bill bill) throws BillException;
+	public Bill generateBill(Integer cart_id) throws BillException;
 	
-	public Bill removeBill(Integer bill) throws BillException;
-	
-	public Bill updateBill(Integer bill_id, Bill bill) throws BillException;
-	
-	public Bill viewBill(Integer bill_id) throws BillException;
+//	public Bill removeBill(Integer bill) throws BillException;
+//	
+//	public Bill updateBill(Integer bill_id, Bill bill) throws BillException;
+//	
+//	public Bill viewBill(Integer bill_id) throws BillException;
 	
 //	public double totalBillById(Integer customer_id) throws BillException, MenuException, CustomerException;
 
