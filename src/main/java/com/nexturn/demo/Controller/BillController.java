@@ -42,7 +42,7 @@ public class BillController {
 	        }
 	        	
 	    }
-}
+
 
 
 
@@ -67,11 +67,12 @@ public class BillController {
 //	}
 //
 //	
-//	@GetMapping("/viewBill/{bill_id}")
-//	public ResponseEntity<Bill> viewBill(@PathVariable int bill_id) throws BillException{
-//		Bill mybill= billservice.viewBill(bill_id);
-//		return new ResponseEntity<Bill>(mybill, HttpStatus.FOUND);
-//	}
+	@GetMapping("/viewBill/{bill_id}")
+	public ResponseEntity<Bill> viewBill(@PathVariable int bill_id) throws BillException{
+		Bill mybill= billService.viewBill(bill_id);
+		return new ResponseEntity<Bill>(mybill, HttpStatus.FOUND);
+	}
+}
 	
 //	@GetMapping("/totalBill/{customer_id}")
 //	public ResponseEntity<Double> totalBillByCustomerId(@PathVariable int customer_id) throws BillException, MenuException, CustomerException{

@@ -13,6 +13,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -24,13 +25,14 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="FoodCart")
+@IdClass(FoodCartId.class)
 
 public class FoodCart {
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    private int id;
-	    
-	 private int cart_id;
+	    @Id
+	    private int cart_id;
 
 	    private int item_quantity;
 	    
@@ -42,7 +44,7 @@ public class FoodCart {
 	    @JoinColumn(name="menu_id")
 	    private Menu menu;
 	    
-	    
+	    	    
 		public FoodCart() {
 			super();
 			// TODO Auto-generated constructor stub

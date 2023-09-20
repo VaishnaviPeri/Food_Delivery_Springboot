@@ -43,6 +43,7 @@ public class BillServiceImpl implements BillService {
 	   try {
 		List<FoodCart> itemsInCart = fcRepo.findByCartId(cart_id);	    
 	    if (itemsInCart.isEmpty()) {
+	    	
 	        throw new BillException("No items found in the foodcart. Try again ....!");
 	    }
 
@@ -51,6 +52,7 @@ public class BillServiceImpl implements BillService {
 	    // Calculate the total bill by summing the prices of all items
 	    for (FoodCart item : itemsInCart) {
 	        // Retrieve the menu item's price using the menu_id
+	    	System.out.println("cart id is "+item.getCart_id());
 	        Menu menu = item.getMenu();
 	        
 	        if (menu != null) {
@@ -60,6 +62,7 @@ public class BillServiceImpl implements BillService {
 	            
 	            // Add the item's total to the overall total bill
 	            billTotal += itemTotal;
+	            System.out.println("the total billl is"+billTotal);
 	        }
 	    } 
 
@@ -67,9 +70,12 @@ public class BillServiceImpl implements BillService {
 	    bill.setBill_date(LocalDateTime.now());
 	    bill.setBill_total(billTotal);
 	    bill.setQuantity(itemsInCart.size()); // Set the total number of items in the bill
-	    bill.setFoodCart(itemsInCart.get(0)); // Assuming you set one FoodCart as a representative in the Bill
+	    bill.setCart_id(cart_id); // Assuming you set one FoodCart as a representative in the Bill
+	   
 
 	    billRepo.save(bill);
+	    
+	   
 	   }
 	   catch (FoodCartException e) {
 			e.printStackTrace();
@@ -77,7 +83,7 @@ public class BillServiceImpl implements BillService {
 	    return bill;
 
 	}
-}
+
 
 
 
@@ -152,14 +158,15 @@ public class BillServiceImpl implements BillService {
 //}
 //
 //	@Override
-//	public Bill viewBill(Integer bill_id) throws BillException {
-//		Optional<Bill> bills= billRepo.findById(bill_id);
-//		if(bills.isPresent()) {
-//			return bills.get();
-//		}else {
-//			throw new BillException("Bill not found");
-//		}
-//	}
+	public Bill viewBill(Integer bill_id) throws BillException {
+		Optional<Bill> bills= billRepo.findById(bill_id);
+		if(bills.isPresent()) {
+			return bills.get();
+		}else {
+			throw new BillException("Bill not found");
+		}
+	}
+	}	
 
 //	@Override
 //	public double totalBillById(Integer customer_id) throws MenuException, CustomerException {

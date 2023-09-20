@@ -16,4 +16,6 @@ public interface MenuService {
 	
 	public void deleteMenuByDishName(String dish_name) throws MenuException;
 
+	public List<Menu> searchByDish_name(String dish_name)throws MenuException;
+
 }

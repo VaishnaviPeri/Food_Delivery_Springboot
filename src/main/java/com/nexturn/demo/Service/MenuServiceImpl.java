@@ -88,6 +88,16 @@ public class MenuServiceImpl implements MenuService {
 			throw new MenuException("No Item exists..");
 		}
 	}
+	
+	public List<Menu> searchByDish_name(String dish_name) throws MenuException {
+		
+		List<Menu> menu= menuRepo.findByDishName(dish_name);
+		if(menu==null || menu.isEmpty()) {
+			throw new MenuException("Oops not Found...! :(");
+		}
+		return menu;
+		
+	}
 
 	
 	@Transactional

@@ -44,23 +44,22 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 		Optional<OrderDetails> opt = odRepo.findById(orderDetails.getOrder_id());
 		if(opt.isPresent()) {
 			
-//			OrderDetails od= new OrderDetails();
-//			od.setBill(orderDetails.getBill());
-//			od.setCart(orderDetails.getCart());
-//			od.setOrder_status(orderDetails.getOrder_status());
-//			od.setOrder_date(LocalDateTime.now());
 			throw new OrderDetailsException("Order Id already exists");
 		}else {
-			FoodCart cart = fcRepo.findById(orderDetails.getCart().getCart_id())
-	                .orElseThrow(() -> new OrderDetailsException("FoodCart not found with ID: " + orderDetails.getCart().getCart_id()));
-			Bill bill = billRepo.findById(orderDetails.getBill().getBill_id())
-	                .orElseThrow(() -> new OrderDetailsException("Bill not found with ID: " + orderDetails.getBill().getBill_id()));
-			
-			orderDetails.setCart(cart);
-			orderDetails.setBill(bill);
+//			FoodCart cart = fcRepo.findById(orderDetails.getCart().getCart_id())
+//	                .orElseThrow(() -> new OrderDetailsException("FoodCart not found with ID: " + orderDetails.getCart().getCart_id()));
+//			Bill bill = billRepo.findById(orderDetails.getBill().getBill_id())
+//	                .orElseThrow(() -> new OrderDetailsException("Bill not found with ID: " + orderDetails.getBill().getBill_id()));
+//			
+//			orderDetails.setCart(cart);
+//			orderDetails.setBill(bill);
 			orderDetails.setOrder_date(LocalDateTime.now());
+			OrderDetails od= new OrderDetails();
+			od.setBill(orderDetails.getBill());
 			
-			
+			od.setOrder_status(orderDetails.isOrder_status());
+			od.setOrder_date(LocalDateTime.now());
+				
 			return odRepo.save(orderDetails);
 		}
 		
@@ -84,10 +83,10 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 		
 		if(UpdateOD.isPresent()) {
 			OrderDetails updatedOD = UpdateOD.get();
-			updatedOD.setOrder_status(orderdetails.getOrder_status());
+			updatedOD.setOrder_status(orderdetails.isOrder_status());
 			updatedOD.setOrder_date(orderdetails.getOrder_date());
 			updatedOD.setBill(orderdetails.getBill());
-			updatedOD.setCart(orderdetails.getCart());
+			
 		
 			return odRepo.save(updatedOD);
 		}

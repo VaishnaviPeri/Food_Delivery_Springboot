@@ -36,12 +36,12 @@ public class OrderDetails {
 	private LocalDateTime order_date;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
-	private FoodCart cart;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="cart_id")
+//	private FoodCart cart;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="bill_id")
 	private Bill bill;
 
 	public OrderDetails() {
@@ -49,12 +49,11 @@ public class OrderDetails {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderDetails(int order_id, boolean order_status, LocalDateTime order_date, FoodCart cart, Bill bill) {
+	public OrderDetails(int order_id, boolean order_status, LocalDateTime order_date, Bill bill) {
 		super();
 		this.order_id = order_id;
 		this.order_status = order_status;
 		this.order_date = order_date;
-		this.cart = cart;
 		this.bill = bill;
 	}
 
@@ -66,7 +65,7 @@ public class OrderDetails {
 		this.order_id = order_id;
 	}
 
-	public boolean getOrder_status() {
+	public boolean isOrder_status() {
 		return order_status;
 	}
 
@@ -82,14 +81,6 @@ public class OrderDetails {
 		this.order_date = order_date;
 	}
 
-	public FoodCart getCart() {
-		return cart;
-	}
-
-	public void setCart(FoodCart cart) {
-		this.cart = cart;
-	}
-
 	public Bill getBill() {
 		return bill;
 	}
@@ -97,5 +88,7 @@ public class OrderDetails {
 	public void setBill(Bill bill) {
 		this.bill = bill;
 	}
+
+	
 
 }

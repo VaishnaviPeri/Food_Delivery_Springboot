@@ -8,13 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-
+import com.nexturn.demo.ExceptionHandling.MenuException;
 import com.nexturn.demo.Model.Menu;
 
 @Repository
 public interface MenuRepository extends JpaRepository<Menu, Integer> {
 	
-
+	@Query("select m from Menu m where m.dish_name=?1")
+    List<Menu> findByDishName(String dish_name) throws MenuException;
 	
 	@Modifying
 	@Query("DELETE FROM Menu m WHERE m.dish_name = :dish_name")

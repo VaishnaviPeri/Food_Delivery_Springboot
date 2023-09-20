@@ -66,11 +66,11 @@ public class MenuController {
 	}
 	
 	
-//	@GetMapping("/viewbydish_name/{dish_name}")
-//	public ResponseEntity<List<Menu>> searchByDishName(@RequestParam String dish_name) throws MenuException{
-//		List<Menu> menus = mservice.searchByDish_name(dish_name);
-//		return new ResponseEntity<List<Menu>>(menus,HttpStatus.FOUND);
-//	}
+	@GetMapping("/search")
+	public ResponseEntity<List<Menu>> searchByDishName(@RequestParam String dish_name) throws MenuException{
+		List<Menu> menus = mservice.searchByDish_name(dish_name);
+		return new ResponseEntity<>(menus,HttpStatus.FOUND);
+	}
 	
 
 	    @DeleteMapping("/delete/{dish_name}")
