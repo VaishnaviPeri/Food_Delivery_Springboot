@@ -29,7 +29,8 @@ public class FoodCart {
 	 @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 	    private int id;
-	    private int cart_id;
+	    
+	 private int cart_id;
 
 	    private int item_quantity;
 	    

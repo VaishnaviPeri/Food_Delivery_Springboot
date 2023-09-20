@@ -9,7 +9,7 @@ import com.nexturn.demo.Model.OrderDetails;
 
 public interface OrderDetailsService {
 	
-	public OrderDetails addOrder(OrderDetails orderDetails) throws OrderDetailsException;
+	public OrderDetails createOrder(OrderDetails orderDetails) throws OrderDetailsException;
 	
 	public OrderDetails removeOrder(Integer order_id) throws OrderDetailsException;
 	

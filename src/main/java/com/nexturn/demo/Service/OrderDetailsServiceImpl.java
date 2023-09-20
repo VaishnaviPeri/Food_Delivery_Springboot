@@ -1,5 +1,6 @@
 package com.nexturn.demo.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,11 +10,15 @@ import org.springframework.stereotype.Service;
 import com.nexturn.demo.ExceptionHandling.CustomerException;
 import com.nexturn.demo.ExceptionHandling.DeliveryPartnerNotFoundException;
 import com.nexturn.demo.ExceptionHandling.OrderDetailsException;
+import com.nexturn.demo.Model.Bill;
 import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Model.DeliveryPartner;
+import com.nexturn.demo.Model.FoodCart;
 import com.nexturn.demo.Model.Menu;
 import com.nexturn.demo.Model.OrderDetails;
+import com.nexturn.demo.Repository.BillRepository;
 import com.nexturn.demo.Repository.CustomerRepository;
+import com.nexturn.demo.Repository.FoodCartRepository;
 import com.nexturn.demo.Repository.OrderDetailsRepository;
 
 
@@ -26,14 +31,35 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 	@Autowired
 	CustomerRepository customerRepo;
 	
+	@Autowired
+	FoodCartRepository fcRepo;
+	
+	@Autowired
+	BillRepository billRepo;
+	
 	private OrderDetails orderdetails;
 
 	
-	public OrderDetails addOrder(OrderDetails orderDetails) throws OrderDetailsException {
+	public OrderDetails createOrder(OrderDetails orderDetails) throws OrderDetailsException {
 		Optional<OrderDetails> opt = odRepo.findById(orderDetails.getOrder_id());
 		if(opt.isPresent()) {
+			
+//			OrderDetails od= new OrderDetails();
+//			od.setBill(orderDetails.getBill());
+//			od.setCart(orderDetails.getCart());
+//			od.setOrder_status(orderDetails.getOrder_status());
+//			od.setOrder_date(LocalDateTime.now());
 			throw new OrderDetailsException("Order Id already exists");
 		}else {
+			FoodCart cart = fcRepo.findById(orderDetails.getCart().getCart_id())
+	                .orElseThrow(() -> new OrderDetailsException("FoodCart not found with ID: " + orderDetails.getCart().getCart_id()));
+			Bill bill = billRepo.findById(orderDetails.getBill().getBill_id())
+	                .orElseThrow(() -> new OrderDetailsException("Bill not found with ID: " + orderDetails.getBill().getBill_id()));
+			
+			orderDetails.setCart(cart);
+			orderDetails.setBill(bill);
+			orderDetails.setOrder_date(LocalDateTime.now());
+			
 			
 			return odRepo.save(orderDetails);
 		}

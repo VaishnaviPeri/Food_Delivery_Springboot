@@ -3,6 +3,8 @@ package com.nexturn.demo.Model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -29,6 +31,8 @@ public class OrderDetails {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int order_id;
 	private boolean order_status;
+	
+	@CreationTimestamp
 	private LocalDateTime order_date;
 	
 	

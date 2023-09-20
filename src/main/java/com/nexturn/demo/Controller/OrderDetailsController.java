@@ -29,9 +29,9 @@ public class OrderDetailsController {
 	@Autowired
 	OrderDetailsService odservice;
 	
-	 @PostMapping("/save")
-     public ResponseEntity<OrderDetails> saveOrder(@RequestBody OrderDetails order) throws OrderDetailsException{
-     		return new ResponseEntity<OrderDetails>(odservice.addOrder(order), HttpStatus.CREATED);
+	 @PostMapping("/create")
+     public ResponseEntity<OrderDetails> createOrderDetails(@RequestBody OrderDetails order) throws OrderDetailsException{
+     		return new ResponseEntity<OrderDetails>(odservice.createOrder(order), HttpStatus.CREATED);
      
        }
 	 
