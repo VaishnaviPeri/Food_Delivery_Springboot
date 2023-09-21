@@ -23,7 +23,7 @@ import com.nexturn.demo.Model.Customer;
 import com.nexturn.demo.Model.User;
 import com.nexturn.demo.Repository.CustomerRepository;
 import com.nexturn.demo.Repository.UserRepository;
-import com.nexturn.demo.Security.JWTConfig;
+import com.nexturn.demo.Security.SecurityConfig;
 import com.nexturn.demo.Service.CustomerService;
 import com.nexturn.demo.dto.CustomerDto;
 import com.nexturn.demo.dto.ResponseDto;
@@ -51,7 +51,7 @@ public class CustomerController {
 
 
 	@Autowired
-	JWTConfig jwtConfig;
+	SecurityConfig securityConfig;
 
 //	@PostMapping("/add")
 //	public ResponseEntity<Customer> addcustomer(@RequestBody Customer customer) throws CustomerException {

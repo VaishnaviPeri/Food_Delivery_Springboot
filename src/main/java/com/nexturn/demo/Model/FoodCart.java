@@ -44,75 +44,102 @@ public class FoodCart {
 	    @JoinColumn(name="menu_id")
 	    private Menu menu;
 	    
-	    	    
+	   @ManyToOne
+	   @JoinColumn(name="order_id")
+	   private OrderDetails orderDetails;  
+	   
+	   
+	   
 		public FoodCart() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
-		public FoodCart(int id, int cart_id, Customer customer_id, int item_quantity, Menu menu) {
+
+
+
+		public FoodCart(int id, int cart_id, int item_quantity, Customer customer, Menu menu,
+				OrderDetails orderDetails) {
 			super();
 			this.id = id;
 			this.cart_id = cart_id;
-//			this.customer_id = customer_id;
-//			this.menu_id = menu_id;
 			this.item_quantity = item_quantity;
-			this.menu = menu;
 			this.customer = customer;
+			this.menu = menu;
+			this.orderDetails = orderDetails;
 		}
-		
+
+
+
 		public int getId() {
 			return id;
 		}
+
+
+
 		public void setId(int id) {
 			this.id = id;
 		}
+
+
+
 		public int getCart_id() {
 			return cart_id;
 		}
+
+
+
 		public void setCart_id(int cart_id) {
 			this.cart_id = cart_id;
 		}
-//		public int getCustomer_id() {
-//			return customer_id;
-//		}
-//		public void setCustomer_id(int customer_id) {
-//			this.customer_id = customer_id;
-//		}
-//		public int getMenu_id() {
-//			return menu_id;
-//		}
-//		public void setMenu_id(int menu_id) {
-//			this.menu_id = menu_id;
-//		}
+
+
+
 		public int getItem_quantity() {
 			return item_quantity;
 		}
-		public Customer getCustomer() {
-			return customer;
-		}
-		public void setCustomer(Customer customer) {
-			this.customer = customer;
-		}
-		public Menu getMenu() {
-			return menu;
-		}
-		public void setMenu(Menu menu) {
-			this.menu = menu;
-		}
+
+
+
 		public void setItem_quantity(int item_quantity) {
 			this.item_quantity = item_quantity;
 		}
-	
-	    
 
-	    
 
-	    
-	    
-	    
 
-	    
-	    
+		public Customer getCustomer() {
+			return customer;
+		}
+
+
+
+		public void setCustomer(Customer customer) {
+			this.customer = customer;
+		}
+
+
+
+		public Menu getMenu() {
+			return menu;
+		}
+
+
+
+		public void setMenu(Menu menu) {
+			this.menu = menu;
+		}
+
+
+
+		public OrderDetails getOrderDetails() {
+			return orderDetails;
+		}
+
+
+
+		public void setOrderDetails(OrderDetails orderDetails) {
+			this.orderDetails = orderDetails;
+		}
+		
 	    
 	    
 	    

@@ -31,7 +31,7 @@ import com.nexturn.demo.Service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-public class JWTConfig {
+public class SecurityConfig {
 	@Autowired
 	private UserDetailsServiceImpl myUserDetailService;
 	

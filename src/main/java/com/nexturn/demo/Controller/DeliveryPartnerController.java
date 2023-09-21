@@ -21,6 +21,7 @@ import com.nexturn.demo.Model.User;
 import com.nexturn.demo.Repository.DeliveryPartnerRepository;
 import com.nexturn.demo.Repository.UserRepository;
 import com.nexturn.demo.Service.DeliveryPartnerService;
+import com.nexturn.demo.dto.DeliveryDetailsDto;
 import com.nexturn.demo.dto.DeliveryPartnerDto;
 import com.nexturn.demo.dto.ResponseDto;
 
@@ -70,12 +71,35 @@ public class DeliveryPartnerController {
 		return ResponseEntity.status(HttpStatus.OK).body(responseDto);
 	}
 	
-	// viewing delivery partner by id
+	
+	
 	@GetMapping("/view/{id}")
-	public ResponseEntity<DeliveryPartner> viewDeliveryPartner(@PathVariable Integer id) throws DeliveryPartnerNotFoundException{
-		DeliveryPartner dp = dpservice.viewDeliveryPartner(id);
-		return new ResponseEntity<DeliveryPartner>(dp, HttpStatus.FOUND);
+	public ResponseEntity<DeliveryDetailsDto> viewDeliveryPartner(@PathVariable("id") int id) {
+	    // Retrieve the delivery partner details by ID
+	    DeliveryPartner deliveryPartner = dpRepo.findById(id).orElse(null);
+
+	    if (deliveryPartner == null) {
+	        // Handle the case where no delivery partner with the given ID is found
+	        return ResponseEntity.notFound().build();
+	    }
+
+	    // Create a DTO to represent the delivery partner details
+	    DeliveryDetailsDto deliveryDetailsDto = new DeliveryDetailsDto();
+	    deliveryDetailsDto.setId(deliveryPartner.getId());
+	    deliveryDetailsDto.setDeliveryPartnerName(deliveryPartner.getDeliveryPartnerName());
+	    deliveryDetailsDto.setDeliveryPartnerContact(deliveryPartner.getDeliveryPartnerContact());
+
+	    // Return the delivery partner details in the response
+	    return ResponseEntity.ok(deliveryDetailsDto);
 	}
+
+	
+	// viewing delivery partner by id
+//	@GetMapping("/view/{id}")
+//	public ResponseEntity<DeliveryPartner> viewDeliveryPartner(@PathVariable Integer id) throws DeliveryPartnerNotFoundException{
+//		DeliveryPartner dp = dpservice.viewDeliveryPartner(id);
+//		return new ResponseEntity<DeliveryPartner>(dp, HttpStatus.FOUND);
+//	}
 	
 	
 	// updating the details by id

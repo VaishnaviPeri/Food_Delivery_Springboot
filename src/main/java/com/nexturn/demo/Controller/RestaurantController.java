@@ -23,7 +23,7 @@ import com.nexturn.demo.Model.Restaurants;
 import com.nexturn.demo.Model.User;
 import com.nexturn.demo.Repository.RestaurantRepository;
 import com.nexturn.demo.Repository.UserRepository;
-import com.nexturn.demo.Security.JWTConfig;
+import com.nexturn.demo.Security.SecurityConfig;
 import com.nexturn.demo.Service.RestaurantService;
 import com.nexturn.demo.dto.ResponseDto;
 import com.nexturn.demo.dto.RestaurantDto;

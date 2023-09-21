@@ -36,10 +36,23 @@ public class OrderDetails {
 	private LocalDateTime order_date;
 	
 	
-//	@OneToOne(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "orderDetails")
 //	@JoinColumn(name="cart_id")
-//	private FoodCart cart;
+	private List<FoodCart> foodcart;
 	
+	public List<FoodCart> getFoodcart() {
+		return foodcart;
+	}
+
+	public void setFoodcart(List<FoodCart> foodcart) {
+		this.foodcart = foodcart;
+	}
+
+	public OrderDetails(List<FoodCart> foodcart) {
+		super();
+		this.foodcart = foodcart;
+	}
+
 	@OneToOne
 	@JoinColumn(name="bill_id")
 	private Bill bill;
